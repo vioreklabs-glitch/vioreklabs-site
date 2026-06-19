@@ -3,245 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gravity Loop - Orbit Survival</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&display=swap" rel="stylesheet">
+    <title>Gravity Loop — Button Control Edition</title>
+    <script src="https://www.gstatic.com/games/sdk/v1/google-html5-games-sdk.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
-        body, html { width: 100%; height: 100%; background-color: #0b0b16; overflow: hidden; font-family: 'Orbitron', sans-serif; }
-        #gameContainer { width: 100%; height: 100%; position: relative; display: flex; justify-content: center; align-items: center; }
-        canvas { background: radial-gradient(circle, #161632 0%, #080811 100%); width: 100%; height: 100%; display: block; }
-        .hud { position: absolute; top: 25px; left: 0; width: 100%; display: flex; justify-content: space-between; padding: 0 30px; pointer-events: none; }
-        .hud-item { color: #fff; font-size: 20px; font-weight: 800; letter-spacing: 2px; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
-        .score-box { color: #39ff14; text-shadow: 0 0 12px #39ff14; }
-        .screen-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8, 8, 17, 0.9); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10; padding: 20px; text-align: center; }
-        h1 { color: #ff007f; font-size: 42px; margin-bottom: 10px; text-shadow: 0 0 20px #ff007f; letter-spacing: 4px; }
-        p { color: #00f0ff; font-size: 16px; margin-bottom: 30px; text-shadow: 0 0 8px #00f0ff; }
-        .btn { padding: 15px 40px; font-size: 18px; font-family: 'Orbitron', sans-serif; font-weight: 800; background: transparent; border: 3px solid #39ff14; color: #39ff14; border-radius: 50px; cursor: pointer; text-shadow: 0 0 10px #39ff14; box-shadow: 0 0 15px rgba(57, 255, 20, 0.3); transition: all 0.3s; letter-spacing: 2px; }
-        .btn:hover { background: #39ff14; color: #080811; box-shadow: 0 0 25px #39ff14; }
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #07070B;
+            color: #ECEDF1;
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 450px;
+            padding: 10px;
+        }
+        canvas {
+            background-color: #12121A;
+            box-shadow: 0 0 35px rgba(232, 36, 44, 0.15);
+            border-radius: 24px;
+            border: 1px solid rgba(38, 38, 47, 0.7);
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+        }
+        /* ALT KISMA ENTEGRE EDİLEN RENK BUTONLARI */
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        .color-btn {
+            height: 60px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .color-btn:active {
+            transform: scale(0.92);
+        }
+        #btn-0 { background-color: #E8242C; box-shadow: 0 0 15px rgba(232, 36, 44, 0.4); }
+        #btn-1 { background-color: #00ffcc; box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); }
+        #btn-2 { background-color: #ffcc00; box-shadow: 0 0 15px rgba(255, 204, 0.4); }
+        #btn-3 { background-color: #9900ff; box-shadow: 0 0 15px rgba(153, 0, 255, 0.4); }
+
+        .instructions {
+            font-size: 13px;
+            color: #71717F;
+            text-align: center;
+            margin-top: 5px;
+            letter-spacing: 0.05em;
+        }
     </style>
 </head>
 <body>
 
-<div id="gameContainer">
-    <div class="hud">
-        <div class="hud-item score-box">SKOR: <span id="loopScore">0</span></div>
-        <div class="hud-item" id="loopLevel">SEVİYE: 1</div>
-    </div>
+<div class="game-container">
+    <canvas id="gameCanvas" width="450" height="450"></canvas>
 
-    <div id="govScreen" class="screen-overlay" style="display: none;">
-        <h1 id="govTitle">OYUN BİTTİ</h1>
-        <p>Kozmik yörüngeden fırlatıldın!</p>
-        <p style="color: #fff; font-size: 24px; margin-bottom: 20px;">SKORUN: <span id="finalLoopScore">0</span></p>
-        <button class="btn" id="restartLoopBtn">YENİDEN BAŞLA</button>
+    <div class="button-container">
+        <div id="btn-0" class="color-btn" onclick="handleColorInput(0)"></div>
+        <div id="btn-1" class="color-btn" onclick="handleColorInput(1)"></div>
+        <div id="btn-2" class="color-btn" onclick="handleColorInput(2)"></div>
+        <div id="btn-3" class="color-btn" onclick="handleColorInput(3)"></div>
     </div>
-
-    <canvas id="loopCanvas"></canvas>
+    
+    <div class="instructions">GELEN TOPUN RENGİNDEKİ BUTONA BAS!</div>
 </div>
 
 <script>
-    const canvas = document.getElementById('loopCanvas');
-    const ctx = canvas.getContext('2d');
-    const container = document.getElementById('gameContainer');
+const gameCanvas = document.getElementById("gameCanvas");
+const gameCtx = gameCanvas.getContext("2d");
 
-    // Ekran boyutlarını garanti altına alalım
-    let W = window.innerWidth;
-    let H = window.innerHeight;
-    canvas.width = W;
-    canvas.height = H;
-    
-    let centerX = W / 2;
-    let centerY = H / 2;
-    let orbitRadius = Math.min(W, H) * 0.35; // Halka boyutu sabitlendi
+const GAME_COLORS = ["#E8242C", "#00ffcc", "#ffcc00", "#9900ff"];
+let gameScore = 0;
+let gameLevel = 1;
+let gameIsOver = false;
 
-    let gameState = 'playing';
-    let score = 0;
-    let level = 1;
-    
-    // FPS KİLİTLEME AYARI (Canavar PC'ler için Delta Time Koruması)
-    let lastTime = performance.now();
-    let frameCount = 0;
+const SKORES_PER_LEVEL = 5; 
+const BASE_SPEED = 0.52;       // HIZ 2.5 KAT YAVAŞLATILDI (Eski: 1.3)
+const SPEED_INCREMENT = 0.16;  // LEVEL BAŞI HIZ ARTIŞI 2.5 KAT YAVAŞLATILDI (Eski: 0.4)
 
-    // Oyuncu Ayarları (Orijinal dönüş hissiyatı)
-    let player = {
-        angle: 0,
-        baseSpeed: 0.05, // Saniyedeki radyan hızı
-        direction: 1,    // 1 sağa, -1 sola
-        radius: 12,
-        color: '#00f0ff'
-    };
+// ÇEMBER BOYUTU (Radius 170)
+const gameLoopObj = {
+    x: gameCanvas.width / 2,
+    y: gameCanvas.height / 2,
+    radius: 170, 
+    targetAngle: 0,
+    currentAngle: 0
+};
 
-    let obstacles = [];
-    let spawnTimer = 0;
-    let spawnInterval = 1500; // Milisaniye cinsinden engel gelme sıklığı (1.5 saniyede bir)
+let gameBall = {
+    x: gameCanvas.width / 2,
+    y: gameCanvas.height / 2,
+    radius: 12,
+    colorIndex: 0,
+    speed: BASE_SPEED,
+    angle: 0,
+    active: true
+};
 
-    function resize() {
-        W = window.innerWidth;
-        H = window.innerHeight;
-        canvas.width = W;
-        canvas.height = H;
-        centerX = W / 2;
-        centerY = H / 2;
-        orbitRadius = Math.min(W, H) * 0.35;
-    }
-    window.addEventListener('resize', resize);
+// YouTube Playables SDK Entegrasyonu
+let youtubeSdk = null;
+if (typeof google !== 'undefined' && google.html5games) {
+    google.html5games.initAsync().then((sdk) => {
+        youtubeSdk = sdk;
+        youtubeSdk.gameLoadingComplete();
+    }).catch((err) => { console.error(err); });
+}
 
-    class Obstacle {
-        constructor() {
-            this.radius = Math.random() * 8 + 8;
-            this.color = '#ff007f';
-            
-            // Engeller sadece dışarıdan merkeze doğru (orijinal düzen) gelecek
-            const angle = Math.random() * Math.PI * 2;
-            const dist = Math.max(W, H) * 0.8;
-            this.x = centerX + Math.cos(angle) * dist;
-            this.y = centerY + Math.sin(angle) * dist;
-            
-            // Merkeze doğru hedefleme
-            const targetAngle = angle + Math.PI + (Math.random() - 0.5) * 0.3;
-            // 60FPS'e göre piksel bazlı hız sabitlemesi
-            const speedMag = 2.5 + Math.random() * 1.5; 
-            this.vx = Math.cos(targetAngle) * speedMag;
-            this.vy = Math.sin(targetAngle) * speedMag;
-        }
-        update(dtRatio) {
-            // Bilgisayar kaç Hz olursa olsun dtRatio ile hızı eşitliyoruz
-            this.x += this.vx * dtRatio;
-            this.y += this.vy * dtRatio;
-        }
-        draw() {
-            ctx.save();
-            ctx.shadowColor = this.color;
-            ctx.shadowBlur = 12;
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.restore();
-        }
+// YouTube Sinyalleri (Pause/Resume)
+if (typeof google !== 'undefined' && google.html5games) {
+    google.html5games.onPause(() => { gameIsOver = true; });
+    google.html5games.onResume(() => { gameIsOver = false; });
+}
+
+function spawnNewBall() {
+    gameBall.x = gameCanvas.width / 2;
+    gameBall.y = gameCanvas.height / 2;
+    gameBall.colorIndex = Math.floor(Math.random() * 4);
+    gameBall.angle = Math.random() * Math.PI * 2;
+    gameBall.speed = BASE_SPEED + (gameLevel - 1) * SPEED_INCREMENT;
+    gameBall.active = true;
+}
+
+spawnNewBall();
+
+function handleColorInput(colorIdx) {
+    if (gameIsOver) {
+        gameScore = 0;
+        gameLevel = 1;
+        gameIsOver = false;
+        gameLoopObj.currentAngle = 0;
+        gameLoopObj.targetAngle = 0;
+        spawnNewBall();
+        return;
     }
 
-    function checkCollisions() {
-        const px = centerX + Math.cos(player.angle) * orbitRadius;
-        const py = centerY + Math.sin(player.angle) * orbitRadius;
+    let segmentOffset = colorIdx * (Math.PI / 2);
+    gameLoopObj.targetAngle = gameBall.angle - segmentOffset - (Math.PI / 4);
+}
 
-        for (let i = 0; i < obstacles.length; i++) {
-            const obs = obstacles[i];
-            const dist = Math.hypot(px - obs.x, py - obs.y);
-            if (dist < player.radius + obs.radius) {
-                gameOver();
-                break;
-            }
+gameCanvas.addEventListener("pointerdown", (e) => {
+    if (gameIsOver) handleColorInput(0);
+});
+
+function updateGame() {
+    if (gameIsOver) return;
+
+    let angleDiff = gameLoopObj.targetAngle - gameLoopObj.currentAngle;
+    gameLoopObj.currentAngle += angleDiff * 0.3;
+
+    gameBall.x += Math.cos(gameBall.angle) * gameBall.speed;
+    gameBall.y += Math.sin(gameBall.angle) * gameBall.speed;
+
+    let dx = gameBall.x - gameLoopObj.x;
+    let dy = gameBall.y - gameLoopObj.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance >= gameLoopObj.radius - gameBall.radius && gameBall.active) {
+        gameBall.active = false;
+
+        let hitAngle = Math.atan2(dy, dx);
+        if (hitAngle < 0) hitAngle += Math.PI * 2;
+
+        let relativeAngle = (hitAngle - gameLoopObj.currentAngle) % (Math.PI * 2);
+        if (relativeAngle < 0) relativeAngle += Math.PI * 2;
+
+        let segmentHit = Math.floor(relativeAngle / (Math.PI / 2)) % 4;
+
+        if (segmentHit === gameBall.colorIndex) {
+            gameScore++; 
+            gameLevel = Math.floor(gameScore / SKORES_PER_LEVEL) + 1;
+            spawnNewBall();
+        } else {
+            gameIsOver = true;
         }
     }
+}
 
-    function gameLoop(timestamp) {
-        if (gameState !== 'playing') return;
+function drawGame() {
+    gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
 
-        // Gerçek geçen süreyi hesapla (Delta Time Teknolojisi)
-        const currentTime = timestamp || performance.now();
-        const deltaTime = currentTime - lastTime;
-        lastTime = currentTime;
-
-        // 60 FPS standardına göre oran (16.67ms = 1 kare)
-        // Eğer ekran 144Hz ise bu oran 0.4 civarı çıkacak ve oyunu yavaşlatacak
-        let dtRatio = deltaTime / (1000 / 60);
-        if (dtRatio > 3) dtRatio = 1; // Tarayıcı sekme değiştirirse sapıtmasın
-
-        ctx.clearRect(0, 0, W, H);
-
-        // 1. Orijinal Yörünge Halkasını Çiz
-        ctx.save();
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
-        ctx.lineWidth = 3;
-        ctx.setLineDash([6, 6]);
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, orbitRadius, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.restore();
-
-        // 2. Oyuncunun Açısını Delta Time ile Güncelle
-        player.angle += player.baseSpeed * player.direction * dtRatio;
-        const px = centerX + Math.cos(player.angle) * orbitRadius;
-        const py = centerY + Math.sin(player.angle) * orbitRadius;
-
-        // Oyuncuyu Çiz
-        ctx.save();
-        ctx.shadowColor = player.color;
-        ctx.shadowBlur = 15;
-        ctx.fillStyle = player.color;
-        ctx.beginPath();
-        ctx.arc(px, py, player.radius, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-
-        // 3. Zaman Tabanlı Engel Üretimi (FPS'ten tamamen bağımsız)
-        spawnTimer += deltaTime;
-        const currentInterval = Math.max(500, spawnInterval - (level * 80));
-        if (spawnTimer >= currentInterval) {
-            obstacles.push(new Obstacle());
-            spawnTimer = 0;
-            
-            // Skor Artışı
-            score += 10;
-            document.getElementById('loopScore').textContent = score;
-            if (score % 100 === 0) {
-                level++;
-                document.getElementById('loopLevel').textContent = `SEVİYE: ${level}`;
-            }
-        }
-
-        // Engelleri Güncelle ve Çiz
-        for (let i = obstacles.length - 1; i >= 0; i--) {
-            const obs = obstacles[i];
-            obs.update(dtRatio);
-            obs.draw();
-
-            // Ekrandan çıkan engelleri temizle
-            if (Math.hypot(obs.x - centerX, obs.y - centerY) > Math.max(W, H) * 1.2) {
-                obstacles.splice(i, 1);
-            }
-        }
-
-        checkCollisions();
-        requestAnimationFrame(gameLoop);
+    for (let i = 0; i < 4; i++) {
+        gameCtx.beginPath();
+        let startAngle = gameLoopObj.currentAngle + (i * Math.PI / 2);
+        let endAngle = startAngle + (Math.PI / 2);
+        gameCtx.arc(gameLoopObj.x, gameLoopObj.y, gameLoopObj.radius, startAngle, endAngle);
+        gameCtx.lineWidth = 16;
+        gameCtx.strokeStyle = GAME_COLORS[i];
+        gameCtx.stroke();
     }
 
-    function gameOver() {
-        gameState = 'gameover';
-        document.getElementById('finalLoopScore').textContent = score;
-        document.getElementById('govScreen').style.display = 'flex';
-    }
-
-    function startLoopGame() {
-        gameState = 'playing';
-        score = 0;
-        level = 1;
-        spawnTimer = 0;
-        obstacles = [];
-        player.angle = 0;
-        player.direction = 1;
-        lastTime = performance.now();
-        document.getElementById('loopScore').textContent = '0';
-        document.getElementById('loopLevel').textContent = 'SEVİYE: 1';
-        document.getElementById('govScreen').style.display = 'none';
+    if (!gameIsOver) {
+        gameCtx.beginPath();
+        gameCtx.arc(gameBall.x, gameBall.y, gameBall.radius, 0, Math.PI * 2);
+        gameCtx.fillStyle = GAME_COLORS[gameBall.colorIndex];
+        gameCtx.fill();
         
-        resize(); // Koordinatları sıfırla
-        requestAnimationFrame(gameLoop);
+        gameCtx.beginPath();
+        gameCtx.arc(gameLoopObj.x, gameLoopObj.y, 6, 0, Math.PI * 2);
+        gameCtx.fillStyle = "rgba(255,255,255,0.2)";
+        gameCtx.fill();
     }
 
-    // Yön Değiştirme Tetikleyicileri (Tıklayınca ters döner)
-    window.addEventListener('touchstart', (e) => {
-        if(gameState === 'playing') player.direction *= -1;
-    }, { passive: true });
+    gameCtx.fillStyle = "#ECEDF1";
+    gameCtx.font = "bold 18px sans-serif";
+    gameCtx.textAlign = "left";
+    gameCtx.fillText("SCORE: " + gameScore, 30, 45);
     
-    window.addEventListener('mousedown', (e) => {
-        if(gameState === 'playing' && e.target.id !== 'restartLoopBtn') player.direction *= -1;
-    });
+    gameCtx.textAlign = "right";
+    gameCtx.fillStyle = "#E8242C";
+    gameCtx.fillText("LEVEL: " + gameLevel, gameCanvas.width - 30, 45);
 
-    document.getElementById('restartLoopBtn').addEventListener('click', startLoopGame);
+    if (gameIsOver) {
+        gameCtx.fillStyle = "rgba(7, 7, 11, 0.95)";
+        gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+        
+        gameCtx.fillStyle = "#E8242C";
+        gameCtx.font = "bold 34px sans-serif";
+        gameCtx.textAlign = "center";
+        gameCtx.fillText("GAME OVER", gameCanvas.width / 2, gameCanvas.height / 2 - 15);
+        
+        gameCtx.fillStyle = "#ECEDF1";
+        gameCtx.font = "14px sans-serif";
+        gameCtx.fillText("Butonlardan Birine Basarak Yeniden Başla", gameCanvas.width / 2, gameCanvas.height / 2 + 25);
+    }
+}
 
-    // İlk kurulumu tetikle
-    startLoopGame();
+function runGameEngine() {
+    updateGame();
+    drawGame();
+    requestAnimationFrame(runGameEngine);
+}
+runGameEngine();
 </script>
 </body>
 </html>
