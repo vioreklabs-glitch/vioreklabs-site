@@ -1,5 +1,5 @@
 // ==========================================================================
-// STACKBURST - SYNTHWAVE ENGINE (60 FPS FIXED & HUD FIXED)
+// STACKBURST - SYNTHWAVE ENGINE (60 FPS FIXED & SCORE BUG FIXED)
 // ==========================================================================
 
 const canvas = document.getElementById('gameCanvas');
@@ -15,12 +15,12 @@ let combo = 0;
 let maxCombo = 0;
 let level = 1;
 
-// 60 FPS Engine Limiter Settings (İnsani Hız Ayarları)
-let baseSpeed = 1.2;     // Başlangıç hızı düşürüldü
-let spawnRate = 110;     // Blokların düşme sıklığı rahatlatıldı
+// 60 FPS Engine Limiter Settings
+let baseSpeed = 1.2;     
+let spawnRate = 110;     
 let frameCount = 0;
 let lastTime = 0;
-const fpsInterval = 1000 / 60; // Net 60 FPS Kilidi
+const fpsInterval = 1000 / 60; 
 let hasRevived = false;
 
 // Layout & Grid Configuration
@@ -385,7 +385,9 @@ function checkGridMatches() {
         if (mult > 1) { showComboIndicator(mult); floatingTexts.push(new FloatingText(`KOMBO x${mult}!`, avgX, avgY, '#ffde07')); }
         sfx.playMatch(); triggerScreenShake(5, 8);
         platform.width = Math.min(platform.maxWidth, platform.width + 10);
-        updateHUD(); // Skor güncellenmesini tetikle
+        
+        updateHUD(); // SKORU ANINDA GÜNCELLE
+        
         if (score >= level * 1000) levelUp();
         setTimeout(() => checkGridMatches(), 120);
     } else if (combo > 0) {
@@ -471,7 +473,7 @@ function gameLoop(timestamp) {
 
         if (frameCount % spawnRate === 0) fallingBlocks.push(new Block());
 
-        platform.x += (platform.targetX - platform.x) * 0.16; // Hassasiyet yumuşatıldı
+        platform.x += (platform.targetX - platform.x) * 0.16; 
         platform.x = Math.max(0, Math.min(W - platform.width, platform.x));
 
         checkUnsupportedColumns();
@@ -540,14 +542,19 @@ function resize() {
 window.addEventListener('resize', resize);
 
 // ==========================================================================
-// GAME STATE MANAGEMENT & CORE HUD FIXED
+// DEFINITIVE HUD FIX (KESİN REÇETE)
 // ==========================================================================
 function updateHUD() {
-    // ID doğrulamaları eklendi, artık kesinlikle skor yazar
-    const scoreEl = document.getElementById('score') || document.querySelector('.score-value');
-    const lvlEl = document.getElementById('levelIndicator') || document.querySelector('.level-value');
-    if (scoreEl) scoreEl.textContent = score;
-    if (lvlEl) lvlEl.textContent = `SEVİYE ${level}`;
+    // ID doğrulaması küçük harfle eşlendi
+    const scoreEl = document.getElementById('score');
+    const lvlEl = document.getElementById('levelIndicator');
+    
+    if (scoreEl) {
+        scoreEl.innerText = score;
+    }
+    if (lvlEl) {
+        lvlEl.innerText = `SEVİYE ${level}`;
+    }
 }
 
 function startGame() {
@@ -556,7 +563,10 @@ function startGame() {
     platform.width = platform.maxWidth; platform.x = W / 2 - platform.width / 2; platform.targetX = platform.x;
     const startScr = document.getElementById('startScreen'); const govScr = document.getElementById('gameOverScreen');
     if (startScr) startScr.style.display = 'none'; if (govScr) govScr.style.display = 'none';
-    updateHUD(); sfx.startMusic(); requestAnimationFrame(gameLoop);
+    
+    updateHUD(); 
+    sfx.startMusic(); 
+    requestAnimationFrame(gameLoop);
 }
 
 function gameOver() {
