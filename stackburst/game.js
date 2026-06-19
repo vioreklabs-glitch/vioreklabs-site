@@ -198,9 +198,23 @@ canvas.addEventListener('mousemove', (e) => { if (gameState !== 'playing') retur
 window.addEventListener('keydown', (e) => { if (gameState !== 'playing') return; const step = 25; if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') platform.targetX = Math.max(0, platform.targetX - step); else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') platform.targetX = Math.min(W - platform.width, platform.targetX + step); });
 document.getElementById('soundToggleBtn').addEventListener('click', () => sfx.toggleMute());
 
+// DIKEY BOYUT SABİTLEME MOTORU (ZIRHLI GÜNCELLEME)
 function resize() {
-    W = container.clientWidth; H = container.clientHeight; canvas.width = W; canvas.height = H; blockSize = Math.max(32, Math.floor(W * 0.11));
-    platform.maxWidth = blockSize * 5; platform.minWidth = Math.round(blockSize * 1.8); platform.y = H - Math.max(90, Math.floor(H * 0.12));
+    // container'ın anlık genişliğini al, yüksekliği ise 16:9 oranına göre içeride sabitle!
+    W = container.clientWidth;
+    // KUTUNUN TAŞMASINI ENGELLEYEN KRİTİK FORMÜL:
+    H = Math.min(container.clientHeight, (W * 16) / 9); 
+    
+    canvas.width = W; 
+    canvas.height = H; 
+    
+    blockSize = Math.max(32, Math.floor(W * 0.11));
+    platform.maxWidth = blockSize * 5; 
+    platform.minWidth = Math.round(blockSize * 1.8);
+    
+    // Platform artık %100 ekranda da asla aşağı kaçamaz, tam canvas tabanına kilitli:
+    platform.y = H - 50; 
+    
     if (gameState === 'menu') { platform.width = platform.maxWidth; platform.x = W / 2 - platform.width / 2; platform.targetX = platform.x; }
 }
 window.addEventListener('resize', resize);
