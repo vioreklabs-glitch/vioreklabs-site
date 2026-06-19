@@ -25,7 +25,7 @@
             </div>
             <div class="hud-right">
                 <div id="levelIndicator" class="level-badge neon-border-blue">SEVİYE 1</div>
-                <button id="soundToggleBtn" class="icon-btn" aria-label="Sesi Kapat/Aç">
+                <button id="soundToggleBtn" class="icon-btn" aria-label="Sesi Kapat/Aç" style="margin-top: 5px;">
                     <svg id="soundOnIcon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                         <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
                     </svg>
@@ -45,26 +45,12 @@
                 
                 <div class="player-setup">
                     <label for="playerNameInput" class="input-label">PİLOT KOD ADI</label>
-                    <input type="text" id="playerNameInput" maxlength="15" placeholder="Kozmik Oyuncu" autocomplete="off">
+                    <input type="text" id="playerNameInput" maxlength="12" placeholder="Kozmik Oyuncu" autocomplete="off">
                 </div>
                 
                 <div class="menu-actions">
                     <button class="btn btn-primary btn-lg pulse" id="startBtn">OYUNU BAŞLAT</button>
                     <button class="btn btn-secondary" id="leaderboardBtn">LİDERLİK TABLOSU</button>
-                </div>
-                
-                <div class="game-instructions">
-                    <p class="inst-heading">NASIL OYNANIR?</p>
-                    <div class="inst-grid">
-                        <div class="inst-item">
-                            <span class="inst-icon">👈👉</span>
-                            <span>Platformu sürükle veya yön tuşlarını kullan.</span>
-                        </div>
-                        <div class="inst-item">
-                            <span class="inst-icon">🧩</span>
-                            <span>Aynı renkteki 3 neon küpü yan yana veya üst üste getirerek patlat!</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -72,42 +58,22 @@
         <div id="gameOverScreen" class="screen-overlay" style="display: none;">
             <div class="menu-content glass-panel animated scaleUp">
                 <h2 class="screen-title neon-text-red">SİSTEM ÇÖKTÜ</h2>
-                <p class="screen-subtitle">PLATFORM KAPASİTESİ AŞILDI</p>
-                
-                <div class="score-summary">
-                    <div class="main-score-box">
-                        <span class="score-label">TOPLAM PUAN</span>
-                        <span id="finalScore" class="score-value neon-text-pink">0</span>
-                    </div>
+                <div class="main-score-box">
+                    <span class="score-label">TOPLAM PUAN</span>
+                    <span id="finalScore" class="score-value neon-text-pink">0</span>
                 </div>
-
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-lbl">EN YÜKSEK</span>
-                        <span id="statHighScore" class="stat-val neon-text-yellow">0</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-lbl">SEVİYE</span>
-                        <span id="statLevel" class="stat-val neon-text-blue">1</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-lbl">KÜPLER</span>
-                        <span id="statBlocks" class="stat-val neon-text-green">0</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-lbl">MAX KOMBO</span>
-                        <span id="statMaxCombo" class="stat-val neon-text-orange">x0</span>
-                    </div>
+                    <div class="stat-card"><span class="stat-lbl">EN YÜKSEK</span><span id="statHighScore" class="stat-val neon-text-yellow">0</span></div>
+                    <div class="stat-card"><span class="stat-lbl">SEVİYE</span><span id="statLevel" class="stat-val neon-text-blue">1</span></div>
+                    <div class="stat-card"><span class="stat-lbl">KÜPLER</span><span id="statBlocks" class="stat-val neon-text-green">0</span></div>
+                    <div class="stat-card"><span class="stat-lbl">MAX KOMBO</span><span id="statMaxCombo" class="stat-val neon-text-orange">x0</span></div>
                 </div>
-                
                 <div class="menu-actions vertical">
                     <button class="btn btn-primary" id="restartBtn">YENİDEN DENE</button>
-                    <button class="btn btn-rewarded" id="reviveBtn" style="display: none;">
-                        <span class="ad-icon">🎬</span> CANLAN (REKLAM İZLE)
-                    </button>
+                    <button class="btn btn-rewarded" id="reviveBtn">CANLAN</button>
                     <div class="action-row">
-                        <button class="btn btn-secondary" id="shareBtn">SKORU PAYLAŞ</button>
-                        <button class="btn btn-secondary" id="homeBtn">ANA MENÜ</button>
+                        <button class="btn btn-secondary" id="shareBtn">PAYLAŞ</button>
+                        <button class="btn btn-secondary" id="homeBtn">MENÜ</button>
                     </div>
                 </div>
             </div>
@@ -116,37 +82,18 @@
         <div id="leaderboardModal" class="screen-overlay modal-backdrop" style="display: none;">
             <div class="menu-content glass-panel modal-content animated scaleUp">
                 <h2 class="screen-title neon-text-yellow">EN İYİ PİLOTLAR</h2>
-                <p class="screen-subtitle">GALAKTİK REKORLAR</p>
-                
-                <div id="leaderboardList" class="leaderboard-list">
-                    </div>
-                
+                <div id="leaderboardList" class="leaderboard-list"></div>
                 <button class="btn btn-secondary" id="closeLeaderboardBtn">KAPAT</button>
             </div>
         </div>
 
         <div id="mockAdOverlay" class="mock-ad-overlay" style="display: none;">
             <div class="mock-ad-content glass-panel">
-                <div class="mock-ad-header">
-                    <span class="ad-badge">SPONSORLU REKLAM</span>
-                    <span id="adCountdown" class="ad-countdown">5</span>
-                </div>
-                <div class="mock-ad-body">
-                    <h3 class="ad-title neon-text-blue">Kozmik Macera</h3>
-                    <p class="ad-desc">Diğer popüler HTML5 neon arcade oyunlarimizi denediniz mi? Ücretsiz oynamak için mağazamızı ziyaret edin!</p>
-                    <div class="ad-preview">
-                        <div class="ad-square neon-border-pink">
-                            <span class="pulsing-text">ŞİMDİ OYNA</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mock-ad-footer">
-                    <button id="skipAdBtn" class="btn btn-disabled" disabled>Reklamı Geç (5)</button>
-                </div>
+                <div class="mock-ad-header"><span class="ad-badge">REKLAM</span><span id="adCountdown" class="ad-countdown">5</span></div>
+                <div class="mock-ad-body"><h3 class="ad-title neon-text-blue">Kozmik Macera</h3><button id="skipAdBtn" class="btn btn-disabled" disabled>Geç (5)</button></div>
             </div>
         </div>
     </div>
-
     <script src="game.js"></script>
 </body>
 </html>
