@@ -42,7 +42,6 @@
             height: auto;
             aspect-ratio: 1;
         }
-        /* ALT KISMA ENTEGRE EDİLEN RENK BUTONLARI */
         .button-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -99,10 +98,9 @@ let gameLevel = 1;
 let gameIsOver = false;
 
 const SKORES_PER_LEVEL = 5; 
-const BASE_SPEED = 1.3;       // TOP BAŞLANGIÇ HIZI OYNANABİLİR SEVİYEDE
+const BASE_SPEED = 1.3;
 const SPEED_INCREMENT = 0.4; 
 
-// ÇEMBER BOYUTU (Radius 170)
 const gameLoopObj = {
     x: gameCanvas.width / 2,
     y: gameCanvas.height / 2,
@@ -121,19 +119,18 @@ let gameBall = {
     active: true
 };
 
-// YouTube Playables SDK Entegrasyonu
+// YouTube Playables SDK Entegrasyonu (Güvenli Kontrol Bloğu)
 let youtubeSdk = null;
 if (typeof google !== 'undefined' && google.html5games) {
     google.html5games.initAsync().then((sdk) => {
         youtubeSdk = sdk;
         youtubeSdk.gameLoadingComplete();
-    }).catch((err) => { console.error(err); });
-}
+    }).catch((err) => { console.error("SDK Init Hatası:", err); });
 
-// YouTube Sinyalleri (Pause/Resume)
-if (typeof google !== 'undefined' && google.html5games) {
     google.html5games.onPause(() => { gameIsOver = true; });
     google.html5games.onResume(() => { gameIsOver = false; });
+} else {
+    console.log("Normal tarayıcı modu: YouTube SDK pas geçildi, oyun sorunsuz başlatılıyor.");
 }
 
 function spawnNewBall() {
@@ -166,7 +163,6 @@ gameCanvas.addEventListener("pointerdown", (e) => {
     if (gameIsOver) handleColorInput(0);
 });
 
-// SKOR HATASI DÜZELTİLMİŞ GAME UPDATE MOTORU
 function updateGame() {
     if (gameIsOver) return;
 
@@ -181,7 +177,6 @@ function updateGame() {
     let distance = Math.sqrt(dx * dx + dy * dy);
 
     if (distance >= gameLoopObj.radius - gameBall.radius && gameBall.active) {
-        // Çift tetiklenmeyi önlemek için çarpışma anında topun aktifliğini hemen kesiyoruz
         gameBall.active = false;
 
         let hitAngle = Math.atan2(dy, dx);
@@ -193,7 +188,7 @@ function updateGame() {
         let segmentHit = Math.floor(relativeAngle / (Math.PI / 2)) % 4;
 
         if (segmentHit === gameBall.colorIndex) {
-            gameScore++; // Skor tam olarak 1 artar
+            gameScore++; 
             gameLevel = Math.floor(gameScore / SKORES_PER_LEVEL) + 1;
             spawnNewBall();
         } else {
