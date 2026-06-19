@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viorek Labs — VIORA Sağlık ve Yaşam Takip Uygulaması | Unlimited Technology</title>
+<meta name="description" content="Viorek Labs, hayatı kolaylaştıran, sevdiklerinizi koruyan ve teknolojinin sınırlarını yeniden tanımlayan uygulamalar üretir. İlk ürünümüz VIORA: yaşlı ve hasta yakınları için sağlık ve yaşam takip uygulaması.">
+
+<link rel="canonical" href="https://www.vioreklabs.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.vioreklabs.com/">
+<meta property="og:title" content="Viorek Labs — Unlimited Technology">
+<meta property="og:description" content="Hayatı kolaylaştıran, sevdiklerinizi koruyan ve teknolojinin sınırlarını yeniden tanımlayan uygulamalar. İlk ürün: VIORA Sağlık ve Yaşam Takibi.">
+<meta property="og:image" content="https://www.vioreklabs.com/general-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="general-logo.png">
+
+<style>
+  :root {
+    --void: #07070B;
+    --surface: #12121A;
+    --surface-2: #1A1A24;
+    --line: rgba(38, 38, 47, 0.6);
+    --silver: #ECEDF1;
+    --muted: #71717F;
+    --red: #E8242C;
+    --red-deep: #5A0F14;
+    --red-glow: rgba(232, 36, 44, 0.35);
+    --radius-lg: 20px;
+    --radius-md: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: #07070B;
+    background: var(--void);
+    color: var(--silver);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--muted);
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(7, 7, 11, 0.65);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+  }
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+  }
+  .logo-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--red);
+  }
+  .nav-right { display: flex; align-items: center; gap: 32px; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 13px; color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--silver); }
+
+  .lang-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    color: var(--silver);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .lang-btn:hover { border-color: var(--red); box-shadow: 0 0 10px var(--red-glow); background: rgba(232, 36, 44, 0.05); }
+
+  @media (max-width: 768px) { .nav-links { display: none; } }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    padding-top: 140px;
+    padding-bottom: 40px;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.15;
+    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+  }
+  .hero-content { position: relative; z-index: 2; width: 100%; text-align: center; }
+  .hero-banner { width: 100%; max-width: 800px; margin: 0 auto 30px; display: block; filter: drop-shadow(0 0 35px var(--red-glow)); height: auto; }
+  .hero h1 { font-size: clamp(40px, 8vw, 80px); line-height: 1.1; margin-bottom: 20px; font-weight: 700; }
+  .hero h1 .accent { color: var(--red); }
+  .hero-sub { max-width: 600px; margin: 20px auto 0; color: #A6A6B3; font-size: 18px; }
+
+  .hero-showcase {
+    max-width: 850px;
+    margin: 50px auto 0 auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(18, 18, 26, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(232, 36, 44, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  .showcase-title {
+    font-size: 14px;
+    color: var(--red);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.15em;
+  }
+  .showcase-desc {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 500px;
+  }
+
+  /* ---------- ECOSYSTEM ---------- */
+  .ecosystem { background-color: #12121A; background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .section-head { margin-bottom: 35px; }
+  .eco-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  @media (max-width: 860px) { .eco-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .eco-grid { grid-template-columns: 1fr; } }
+  .eco-tile { background-color: #07070B; background: var(--void); padding: 30px; border-radius: var(--radius-md); border: 1px solid var(--line); transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; }
+  .eco-tile:hover { transform: translateY(-3px); border-color: rgba(232, 36, 44, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+  .eco-tile.active { background: linear-gradient(160deg, var(--surface-2) 0%, var(--red-deep) 150%); border-color: rgba(232, 36, 44, 0.3); }
+  .eco-tile h3 { font-size: 20px; line-height: 1.2; }
+  .eco-status { font-family: 'JetBrains Mono'; font-size: 10px; border: 1px solid var(--line); padding: 4px 12px; border-radius: 50px; text-align: center; width: fit-content; }
+  .eco-tile.active .viora-mini-icon { height: 32px; width: 32px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(232, 36, 44, 0.3); }
+
+  /* ---------- VIORA SECTION ---------- */
+  .viora-spotlight { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  @media (max-width: 860px) { .viora-spotlight { grid-template-columns: 1fr; gap: 40px; } }
+  .viora-visual { border-radius: 30px; border: 1px solid var(--line); background-color: #1A1A24; background: var(--surface-2); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 0 50px rgba(0, 0, 0, 0.4); }
+  .viora-visual img { width: 85%; height: 85%; object-fit: contain; filter: drop-shadow(0 0 25px rgba(232, 36, 44, 0.2)); }
+  .feature-list { margin-top: 30px; }
+  .feature-row { display: flex; gap: 20px; padding: 20px 0; border-top: 1px solid var(--line); }
+  .feature-icon { color: var(--red); font-weight: bold; }
+
+  /* ---------- INTERACTIVE COMIC GALLERY ---------- */
+  .comic-section { background: #0b0b11; border-bottom: 1px solid var(--line); padding: 100px 0; }
+  .comic-container { display: grid; grid-template-columns: 350px 1fr; gap: 40px; margin-top: 40px; align-items: start; }
+  @media (max-width: 768px) { .comic-container { grid-template-columns: 1fr; } }
+  .comic-menu { display: flex; flex-direction: column; gap: 10px; }
+  .comic-tab { background-color: #1A1A24; background: var(--surface-2); border: 1px solid var(--line); padding: 16px 20px; border-radius: var(--radius-md); cursor: pointer; text-align: left; font-family: 'Space Grotesk', sans-serif; font-weight: 500; color: var(--muted); transition: all 0.3s ease; display: flex; align-items: center; gap: 15px; }
+  .comic-tab:hover { border-color: var(--red); color: var(--silver); }
+  .comic-tab.active { background: linear-gradient(90deg, var(--red-deep) 0%, var(--surface-2) 100%); border-color: var(--red); color: white; box-shadow: 0 4px 20px rgba(232, 36, 44, 0.15); }
+  .comic-tab .num { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.6; }
+  
+  .comic-display { background-color: #12121A; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 20px; display: flex; align-items: center; justify-content: center; min-height: 500px; position: relative; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4); cursor: zoom-in; }
+  .comic-display::after { content: '🔍'; position: absolute; bottom: 20px; right: 20px; font-size: 20px; opacity: 0.5; transition: 0.3s; pointer-events: none; }
+  .comic-display:hover::after { opacity: 1; }
+  .comic-display img { max-width: 100%; max-height: 650px; object-fit: contain; border-radius: 10px; display: none; animation: fadeIn 0.4s ease forwards; }
+  .comic-display img.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+  /* ---------- LIGHTBOX EFFECT ---------- */
+  .lightbox { position: fixed; inset: 0; background: rgba(7, 7, 11, 0.95); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s ease; padding: 20px; }
+  .lightbox.active { opacity: 1; pointer-events: auto; }
+  .lightbox img { max-width: 100%; max-height: 90vh; object-fit: contain; border-radius: 12px; transform: scale(0.95); transition: 0.3s ease; border: 1px solid var(--line); }
+  .lightbox.active img { transform: scale(1); }
+  .lightbox-close { position: absolute; top: 20px; right: 20px; background-color: #1A1A24; background: var(--surface-2); border: 1px solid var(--line); color: white; font-size: 24px; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+  .lightbox-close:hover { border-color: var(--red); color: var(--red); }
+
+  /* ---------- FAQ SECTION ---------- */
+  .faq-section { background-color: #07070B; background: var(--void); padding: 100px 0; border-bottom: 1px solid var(--line); }
+  .faq-container { max-width: 800px; margin: 40px auto 0 auto; display: flex; flex-direction: column; gap: 15px; }
+  .faq-item { background-color: #1A1A24; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; transition: 0.3s; }
+  .faq-trigger { width: 100%; padding: 24px; text-align: left; background: transparent; border: none; color: var(--silver); font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .faq-trigger:hover { color: white; }
+  .faq-icon { font-size: 20px; color: var(--red); transition: transform 0.3s; }
+  .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; padding: 0 24px; color: var(--muted); font-size: 15px; line-height: 1.6; }
+  .faq-item.active { border-color: var(--red); box-shadow: 0 0 20px rgba(232, 36, 44, 0.05); }
+  .faq-item.active .faq-icon { transform: rotate(45deg); }
+  .faq-item.active .faq-content { padding-bottom: 24px; }
+
+  /* ---------- COMMON ---------- */
+  section { padding: 100px 0; }
+  .badge-soon { display: inline-flex; align-items: center; gap: 10px; background: rgba(232, 36, 44, 0.1); border: 1px solid var(--red-deep); padding: 10px 20px; border-radius: 50px; color: var(--red); font-family: 'JetBrains Mono'; font-size: 12px; margin-top: 30px; }
+  .badge-soon img { height: 18px; width: 18px; object-fit: cover; border-radius: 4px; }
+  .dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; animation: blink 1.5s infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .btn { display: inline-block; padding: 15px 40px; background: var(--red); color: white; border-radius: 50px; font-family: 'JetBrains Mono'; font-weight: 600; margin-top: 40px; transition: 0.3s; }
+  .btn:hover { background: #ff333c; transform: scale(1.05); box-shadow: 0 0 20px var(--red-glow); }
+  footer { padding: 60px 0; border-top: 1px solid var(--line); text-align: center; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo-mark">
+      <div class="logo-dot"></div>
+      VIOREK LABS
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#ekosistem" class="lang-target" data-tr="Ekosistem" data-en="Ecosystem">Ekosistem</a>
+        <a href="#viora" class="lang-target" data-tr="VIORA" data-en="VIORA">VIORA</a>
+        <a href="#ozellikler" class="lang-target" data-tr="Özellik Keşfi" data-en="Features">Özellik Keşfi</a>
+        
+        <a href="gravity-loop.html" target="_blank" class="lang-target" data-tr="🕹️ Oyunu Oyna" data-en="🕹️ Play Game">🕹️ Oyunu Oyna</a>
+        
+        <a href="#faq" class="lang-target" data-tr="SSS" data-en="FAQ">SSS</a>
+        <a href="#iletisim" class="lang-target" data-tr="İletişim" data-en="Contact">İletişim</a>
+      </div>
+      <button class="lang-btn" onclick="toggleLanguage()" aria-label="Switch language to English">EN</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="wrap hero-content">
+    <img src="general-logo.png" alt="Viorek Labs Banner" class="hero-banner" width="1200" height="675">
+    <span class="mono">Unlimited Technology</span>
+    <h1>VIOREK <span class="accent">LABS</span></h1>
+    <p class="hero-sub lang-target" data-tr="Hayatı kolaylaştıran, sevdiklerinizi koruyan ve teknolojinin sınırlarını yeniden tanımlayan fütüristik uygulamalar." data-en="We build futuristic applications that make life easier, protect your loved ones, and redefine the boundaries of technology.">Hayatı kolaylaştıran, sevdiklerinizi koruyan ve teknolojinin sınırlarını yeniden tanımlayan fütüristik uygulamalar.</p>
+    
+    <div class="hero-showcase">
+      <div class="dot"></div>
+      <span class="showcase-title lang-target" data-tr="VIORA SİSTEMLERİ AKTİF" data-en="VIORA SYSTEMS ONLINE">VIORA SİSTEMLERİ AKTİF</span>
+      <p class="showcase-desc lang-target" 
+         data-tr="Yaşlı ve hasta yakınlarınızın takibini fütüristik çizgi hikayelerle keşfetmek için aşağıdaki menüleri inceleyin." 
+         data-en="Explore how to track your elderly and patient relatives through futuristic visual comic strips below.">
+         Yaşlı ve hasta yakınlarınızın takibini fütüristik çizgi hikayelerle keşfetmek için aşağıdaki menüleri inceleyin.
+      </p>
+    </div>
+  </div>
+</header>
+
+<section class="ecosystem" id="ekosistem">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono lang-target" data-tr="Ekosistem" data-en="Ecosystem">Ekosistem</span>
+      <h2 class="lang-target" data-tr="Geleceği İnşa Ediyoruz" data-en="Building the Future">Geleceği İnşa Ediyoruz</h2>
+    </div>
+    <div class="eco-grid">
+      <div class="eco-tile active">
+        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+          <span class="mono">01</span>
+          <img src="viora-logo.jpg" alt="VIORA" class="viora-mini-icon" width="32" height="32">
+        </div>
+        <div>
+          <h3>VIORA</h3>
+          <p class="lang-target" data-tr="Sağlık &amp; Yaşam Takibi" data-en="Health &amp; Life Tracker">Sağlık &amp; Yaşam Takibi</p>
+        </div>
+        <div class="eco-status lang-target" data-tr="YAKINDA" data-en="COMING SOON">YAKINDA</div>
+      </div>
+      <div class="eco-tile"><div><span class="mono">02</span></div><div><h3>???</h3><p class="lang-target" data-tr="Yeni Proje" data-en="New Project">Yeni Proje</p></div><div class="eco-status lang-target" data-tr="PLANLANIYOR" data-en="PLANNED">PLANLANIYOR</div></div>
+      <div class="eco-tile"><div><span class="mono">03</span></div><div><h3>???</h3><p class="lang-target" data-tr="Yeni Proje" data-en="New Project">Yeni Proje</p></div><div class="eco-status lang-target" data-tr="PLANLANIYOR" data-en="PLANNED">PLANLANIYOR</div></div>
+      <div class="eco-tile"><div><span class="mono">04</span></div><div><h3>???</h3><p class="lang-target" data-tr="Yeni Proje" data-en="New Project">Yeni Proje</p></div><div class="eco-status lang-target" data-tr="PLANLANIYOR" data-en="PLANNED">PLANLANIYOR</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="viora">
+  <div class="wrap viora-spotlight">
+    <div>
+      <span class="mono lang-target" data-tr="Ürün Odak" data-en="Product Spotlight">Ürün Odak</span>
+      <h2 class="lang-target" data-tr="VIORA SAĞLIK VE YAŞAM TAKİBİ" data-en="VIORA HEALTH &amp; LIFE TRACKER">VIORA SAĞLIK VE YAŞAM TAKİBİ</h2>
+      <p class="lang-target" data-tr="Yaşlı ve hasta yakınlarınızın sağlığını anlık takip edin. İlaç onayları, acil durum bildirimleri ve detaylı dijital sağlık raporları tek bir merkezde." data-en="Track the health of your elderly and patient relatives instantly. Medication confirmations, emergency alerts, and detailed digital health reports all in one centralized hub.">Yaşlı ve hasta yakınlarınızın sağlığını anlık takip edin. İlaç onayları, acil durum bildirimleri ve detaylı dijital sağlık raporları tek bir merkezde.</p>
+      
+      <div class="feature-list">
+        <div class="feature-row">
+          <div class="feature-icon">✓</div>
+          <div><h4 class="lang-target" data-tr="Akıllı Takip" data-en="Smart Tracking">Akıllı Takip</h4><p class="lang-target" data-tr="WhatsApp entegreli aile bildirim sistemi." data-en="Family notification system integrated with WhatsApp.">WhatsApp entegreli aile bildirim sistemi.</p></div>
+        </div>
+        <div class="feature-row">
+          <div class="feature-icon">✓</div>
+          <div><h4 class="lang-target" data-tr="Anlık SOS" data-en="Instant SOS">Anlık SOS</h4><p class="lang-target" data-tr="Tek tuşla konum bazlı acil yardım çağrısı." data-en="One-tap location-based emergency assistance call.">Tek tuşla konum bazlı acil yardım çağrısı.</p></div>
+        </div>
+      </div>
+      
+      <div class="badge-soon">
+        <div class="dot"></div> 
+        <img src="viora-logo.jpg" alt="VIORA" width="18" height="18">
+        <span class="lang-target" data-tr="GOOGLE PLAY'DE YAKINDA" data-en="COMING SOON ON GOOGLE PLAY">GOOGLE PLAY'DE YAKINDA</span>
+      </div>
+    </div>
+    
+    <div class="viora-visual">
+      <img src="viora-logo.jpg" alt="VIORA Sağlık Logosu" width="500" height="500">
+    </div>
+  </div>
+</section>
+
+<section class="comic-section" id="ozellikler">
+  <div class="wrap">
+    <span class="mono lang-target" data-tr="Görsel Hikayelerle VIORA" data-en="VIORA Through Visual Stories">Görsel Hikayelerle VIORA</span>
+    <h2 class="lang-target" data-tr="Uygulama Özelliklerini Keşfedin" data-en="Explore Application Features">Uygulama Özelliklerini Keşfedin</h2>
+    <p style="color: var(--muted); margin-top: 10px;" class="lang-target" data-tr="Soldaki menüden merak ettiğiniz özelliğe tıklayarak 4 kareli çizgi roman anlatımını inceleyebilirsiniz." data-en="Click on any feature from the left menu to view its 4-panel comic strip illustration.">Soldaki menüden merak ettiğiniz özelliğe tıklayarak 4 kareli çizgi roman anlatımını inceleyebilirsiniz.</p>
+    
+    <div class="comic-container">
+      <div class="comic-menu">
+        <button class="comic-tab active" onclick="switchComic(1)"><span class="num">01</span> <span class="lang-target" data-tr="İlaç Bilgilendirme" data-en="Medication Notification">İlaç Bilgilendirme</span></button>
+        <button class="comic-tab" onclick="switchComic(2)"><span class="num">02</span> <span class="lang-target" data-tr="Randevu Bilgilendirme" data-en="Appointment Notification">Randevu Bilgilendirme</span></button>
+        <button class="comic-tab" onclick="switchComic(3)"><span class="num">03</span> <span class="lang-target" data-tr="Acil Durum Bildirimi" data-en="Emergency Alert">Acil Durum Bildirimi</span></button>
+        <button class="comic-tab" onclick="switchComic(4)"><span class="num">04</span> <span class="lang-target" data-tr="Tansiyon Ölçüm Kaydı" data-en="Blood Pressure Log">Tansiyon Ölçüm Kaydı</span></button>
+        <button class="comic-tab" onclick="switchComic(5)"><span class="num">05</span> <span class="lang-target" data-tr="Şeker Ölçüm Kaydı" data-en="Blood Sugar Log">Şeker Ölçüm Kaydı</span></button>
+        <button class="comic-tab" onclick="switchComic(6)"><span class="num">06</span> <span class="lang-target" data-tr="Hatırlatıcı" data-en="Smart Reminder">Hatırlatıcı</span></button>
+        <button class="comic-tab" onclick="switchComic(7)"><span class="num">07</span> <span class="lang-target" data-tr="Rapor Gönderimi" data-en="Report Export">Rapor Gönderimi</span></button>
+        <button class="comic-tab" onclick="switchComic(8)"><span class="num">08</span> <span class="lang-target" data-tr="Google Drive Yedekleme" data-en="Google Drive Backup">Google Drive Yedekleme</span></button>
+      </div>
+      
+      <div class="comic-display" onclick="openLightbox()">
+        <img id="img-1" class="active" src="cizgi1.jpg" data-src-tr="cizgi1.jpg" data-src-en="cizgi1-en.png" onerror="this.onerror=null; this.src='cizgi1.png';" alt="İlaç Bilgilendirme" width="1200" height="669">
+        <img id="img-2" src="cizgi2.jpg" data-src-tr="cizgi2.jpg" data-src-en="cizgi2-en.png" onerror="this.onerror=null; this.src='cizgi2.png';" alt="Randevu Bilgilendirme" width="1200" height="669" loading="lazy">
+        <img id="img-3" src="cizgi3.jpg" data-src-tr="cizgi3.jpg" data-src-en="cizgi3-en.png" onerror="this.onerror=null; this.src='cizgi3.png';" alt="Acil Durum Bildirimi" width="1200" height="896" loading="lazy">
+        <img id="img-4" src="cizgi4.jpg" data-src-tr="cizgi4.jpg" data-src-en="cizgi4-en.png" onerror="this.onerror=null; this.src='cizgi4.png';" alt="Tansiyon Ölçüm Kaydı" width="1200" height="669" loading="lazy">
+        <img id="img-5" src="cizgi5.jpg" data-src-tr="cizgi5.jpg" data-src-en="cizgi5-en.png" onerror="this.onerror=null; this.src='cizgi5.png';" alt="Şeker Ölçüm Kaydı" width="1200" height="669" loading="lazy">
+        <img id="img-6" src="cizgi6.jpg" data-src-tr="cizgi6.jpg" data-src-en="cizgi6-en.png" onerror="this.onerror=null; this.src='cizgi6.png';" alt="Hatırlatıcı" width="1200" height="669" loading="lazy">
+        <img id="img-7" src="cizgi7.jpg" data-src-tr="cizgi7.jpg" data-src-en="cizgi7-en.png" onerror="this.onerror=null; this.src='cizgi7.png';" alt="Rapor Gönderimi" width="1199" height="896" loading="lazy">
+        <img id="img-8" src="cizgi8.jpg" data-src-tr="cizgi8.jpg" data-src-en="cizgi8-en.png" onerror="this.onerror=null; this.src='cizgi8.png';" alt="Google Drive Yedekleme" width="1200" height="669" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()" role="dialog" aria-label="Büyütülmüş Görsel">
+  <button class="lightbox-close" aria-label="Kapat">&times;</button>
+  <img id="lightbox-img" src="" alt="Büyütülmüş Görsel">
+</div>
+
+<section class="faq-section" id="faq">
+  <div class="wrap">
+    <div style="text-align: center;">
+      <span class="mono lang-target" data-tr="Destek &amp; Bilgi" data-en="Support &amp; Info">Destek &amp; Bilgi</span>
+      <h2 class="lang-target" data-tr="Sıkça Sorulan Sorular" data-en="Frequently Asked Questions">Sıkça Sorulan Sorular</h2>
+    </div>
+    
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)" aria-expanded="false"><span class="lang-target" data-tr="VIORA verilerimizi nerede saklıyor?" data-en="Where does VIORA store our data?">VIORA verilerimizi nerede saklıyor?</span><span class="faq-icon">+</span></button>
+        <div class="faq-content"><p class="lang-target" data-tr="VIORA %100 gizlilik odaklıdır. Sağlık verileriniz hiçbir harici sunucuya gitmez, tamamen kendi cihazınızda yerel olarak şifrelenir... " data-en="VIORA is 100% privacy-focused...">VIORA %100 gizlilik odaklıdır. Sağlık verileriniz hiçbir harici sunucuya gitmez, tamamen kendi cihazınızda yerel olarak şifrelenir...</p></div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)" aria-expanded="false"><span class="lang-target" data-tr="WhatsApp aile bildirimleri nasıl çalışıyor?" data-en="How do WhatsApp family alerts work?">WhatsApp aile bildirimleri nasıl çalışıyor?</span><span class="faq-icon">+</span></button>
+        <div class="faq-content"><p class="lang-target" data-tr="WhatsApp kanalıyla gönderilen bilgilendirme mesajları..." data-en="Information messages...">WhatsApp kanalıyla gönderilen bilgilendirme mesajları...</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)" aria-expanded="false"><span class="lang-target" data-tr="Uygulama ücretli mi olacak?" data-en="Will the application be paid?">Uygulama ücretli mi olacak?</span><span class="faq-icon">+</span></button>
+        <div class="faq-content"><p class="lang-target" data-tr="VIORA kısıtlı özelliklerle ücretsiz olarak yayınlanacak..." data-en="VIORA will be launched for free...">VIORA kısıtlı özelliklerle ücretsiz olarak yayınlanacak...</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="iletisim" style="text-align: center; background-color: #12121A; background: var(--surface);">
+  <div class="wrap">
+    <span class="mono lang-target" data-tr="İletişim" data-en="Contact">İletişim</span>
+    <h2 class="lang-target" data-tr="Bizimle Tanışın" data-en="Meet Us">Bizimle Tanışın</h2>
+    <p class="lang-target" data-tr="Fikirlerinizi gerçeğe dönüştürelim." data-en="Let's transform your ideas into reality.">Fikirlerinizi gerçeğe dönüştürelim.</p>
+    <a href="mailto:admin@vioreklabs.com" class="btn">admin@vioreklabs.com</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="mono" style="font-size: 10px;">© 2026 VIOREK LABS — UNLIMITED TECHNOLOGY</p>
+  </div>
+</footer>
+
+<script>
+  function switchComic(index) {
+    const tabs = document.querySelectorAll('.comic-tab');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    const images = document.querySelectorAll('.comic-display img');
+    images.forEach(img => img.classList.remove('active'));
+    
+    tabs[index - 1].classList.add('active');
+    document.getElementById('img-' + index).classList.add('active');
+  }
+
+  function openLightbox() {
+    const activeImg = document.querySelector('.comic-display img.active');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = activeImg.getAttribute('src');
+    lightbox.classList.add('active');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').remove('active');
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const content = item.querySelector('.faq-content');
+    const isActive = item.classList.contains('active');
+    
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('active');
+      i.querySelector('.faq-content').style.maxHeight = null;
+      i.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+    });
+
+    if (!isActive) {
+      item.classList.add('active');
+      content.style.maxHeight = content.scrollHeight + "px";
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  let currentLang = 'TR';
+  function toggleLanguage() {
+    currentLang = currentLang === 'TR' ? 'EN' : 'TR';
+    document.documentElement.lang = currentLang === 'TR' ? 'tr' : 'en';
+
+    const langBtn = document.querySelector('.lang-btn');
+    langBtn.innerText = currentLang === 'TR' ? 'EN' : 'TR';
+    langBtn.setAttribute('aria-label', currentLang === 'TR' ? 'Switch language to English' : 'Dili Türkçeye çevir');
+
+    const targets = document.querySelectorAll('.lang-target');
+    targets.forEach(el => {
+      const translation = currentLang === 'TR' ? el.getAttribute('data-tr') : el.getAttribute('data-en');
+      if(translation) {
+        el.innerHTML = translation;
+      }
+    });
+
+    const comicImages = document.querySelectorAll('.comic-display img');
+    comicImages.forEach(img => {
+      const newSrc = currentLang === 'TR' ? img.getAttribute('data-src-tr') : img.getAttribute('data-src-en');
+      if(newSrc) {
+        img.setAttribute('src', newSrc);
+      }
+    });
+  }
+</script>
+</body>
+</html>
