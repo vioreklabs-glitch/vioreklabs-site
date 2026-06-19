@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Gravity Loop — Button Control Edition</title>
-    <script src="https://www.gstatic.com/games/sdk/v1/google-html5-games-sdk.js"></script>
     <style>
         * {
             box-sizing: border-box;
             user-select: none;
-            
             -webkit-user-select: none;
         }
         body {
@@ -120,19 +118,30 @@ let gameBall = {
     active: true
 };
 
-// YouTube Playables SDK Entegrasyonu (Güvenli Kontrol Bloğu)
-let youtubeSdk = null;
-if (typeof google !== 'undefined' && google.html5games) {
-    google.html5games.initAsync().then((sdk) => {
-        youtubeSdk = sdk;
-        youtubeSdk.gameLoadingComplete();
-    }).catch((err) => { console.error("SDK Init Hatası:", err); });
+// YouTube SDK'sını Güvenli ve Dinamik Olarak Yükleme Motoru
+(function loadYouTubeSdkSecurely() {
+    const script = document.createElement('script');
+    script.src = "https://www.gstatic.com/games/sdk/v1/google-html5-games-sdk.js";
+    script.async = true;
+    
+    script.onload = function() {
+        if (typeof google !== 'undefined' && google.html5games) {
+            google.html5games.initAsync().then((sdk) => {
+                const youtubeSdk = sdk;
+                if (youtubeSdk) youtubeSdk.gameLoadingComplete();
+            }).catch((err) => { console.error("SDK Başlatılamadı:", err); });
 
-    google.html5games.onPause(() => { gameIsOver = true; });
-    google.html5games.onResume(() => { gameIsOver = false; });
-} else {
-    console.log("Normal tarayıcı modu: YouTube SDK pas geçildi, oyun sorunsuz başlatılıyor.");
-}
+            google.html5games.onPause(() => { gameIsOver = true; });
+            google.html5games.onResume(() => { gameIsOver = false; });
+        }
+    };
+
+    script.onerror = function() {
+        console.warn("YouTube SDK engellendi veya yüklenemedi. Oyun yerel modda kesintisiz devam ediyor.");
+    };
+
+    document.head.appendChild(script);
+})();
 
 function spawnNewBall() {
     gameBall.x = gameCanvas.width / 2;
