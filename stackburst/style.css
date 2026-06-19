@@ -33,29 +33,29 @@ body {
     color: #ffffff;
     overflow: hidden;
     height: 100vh;
-    height: -webkit-fill-available;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 /* ==========================================================================
-   GAME ENGINE CONTAINER SYSTEM (FIXED ASPECT RATIO)
+   GAME ENGINE CONTAINER SYSTEM (FIXED ASPECT RATIO & VERTICAL RESPONSIVE)
    ========================================================================== */
 #gameContainer {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 100vh; /* Her zaman ekran yüksekliğine tam otursun */
     max-width: 450px;
-    max-height: 800px;
+    max-height: 100vh; /* Yüksekliğin taşmasını kesinlikle engelle */
     background: #020208;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 2px rgba(0, 240, 255, 0.2);
     overflow: hidden;
-    aspect-ratio: 9 / 16;
 }
 
-@media (min-width: 450px) and (min-height: 800px) {
+@media (min-width: 450px) and (min-height: 600px) {
     #gameContainer {
+        height: 95vh;
+        max-height: 800px; /* Büyük ekranlarda kutu gibi dursun */
         border-radius: 24px;
         border: 1px solid rgba(255, 255, 255, 0.05);
     }
@@ -196,7 +196,6 @@ body {
     gap: 28px;
 }
 
-/* Brand & Typography */
 .brand {
     margin-bottom: 5px;
 }
@@ -234,7 +233,6 @@ body {
     margin-top: -20px;
 }
 
-/* User Identity Input */
 .player-setup {
     text-align: left;
     display: flex;
@@ -270,7 +268,6 @@ body {
     box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
 }
 
-/* Button UI Toolkit */
 .menu-actions {
     display: flex;
     flex-direction: column;
@@ -353,7 +350,6 @@ body {
     cursor: not-allowed;
 }
 
-/* Instructions */
 .game-instructions {
     border-top: 1px solid rgba(255,255,255,0.05);
     padding-top: 18px;
@@ -390,7 +386,7 @@ body {
 }
 
 /* ==========================================================================
-   GAME OVER STATS GRAPHICS
+   STATS SYSTEM (GAME OVER SCREEN)
    ========================================================================== */
 .main-score-box {
     background: rgba(0, 0, 0, 0.25);
@@ -460,7 +456,6 @@ body {
     padding-right: 4px;
 }
 
-/* Custom mini scrollbar for rankings */
 .leaderboard-list::-webkit-scrollbar {
     width: 4px;
 }
@@ -615,7 +610,15 @@ body {
 }
 
 @keyframes scaleUp {
-    from { \n        opacity: 0;\n        transform: scale(0.9);\n    }\n    to { \n        opacity: 1;\n        transform: scale(1);\n    }\n}
+    from { 
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
 @keyframes pulseGlow {
     0% {
@@ -644,9 +647,6 @@ body {
     animation: pulseGlow 1.5s infinite alternate;
 }
 
-/* ==========================================================================
-   GLOW COLORS SHADOW UTILITIES
-   ========================================================================== */
 .neon-text-blue { color: var(--neon-blue); text-shadow: 0 0 10px rgba(0, 240, 255, 0.4); }
 .neon-text-pink { color: var(--neon-pink); text-shadow: 0 0 10px rgba(255, 0, 127, 0.4); }
 .neon-text-green { color: var(--neon-green); text-shadow: 0 0 10px rgba(57, 255, 20, 0.4); }
