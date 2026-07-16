@@ -120,7 +120,6 @@
     border-bottom: 1px solid var(--line);
   }
   
-  /* Ana sayfadaki fütüristik grid arka planı */
   .hero-grid {
     position: absolute;
     inset: 0;
@@ -144,7 +143,7 @@
   }
   .policy-header h1 .accent { color: var(--red); }
 
-  /* ---------- CONTENT (Ana sayfadaki Showcase/Panel Tarzı) ---------- */
+  /* ---------- CONTENT ---------- */
   .policy-content {
     padding: 60px 0 100px 0;
     position: relative;
@@ -253,27 +252,55 @@
       
       <div class="policy-section">
         <h2 class="lang-target" data-tr="1. Giriş" data-en="1. Introduction">1. Giriş</h2>
-        <p class="lang-target" data-tr="Viorek Labs olarak gizliliğinize ve kişisel verilerinizin güvenliğine büyük önem veriyoruz. VIORA Sağlık ve Yaşam Takip Uygulaması'nı kullanırken sağladığınız bilgilerin nasıl korunduğunu bu politikada bulabilirsiniz." data-en="At Viorek Labs, we attach great importance to your privacy and the security of your personal data. You can find how the information you provide while using the VIORA Health and Life Tracking App is protected in this policy.">Viorek Labs olarak gizliliğinize ve kişisel verilerinizin güvenliğine büyük önem veriyoruz. VIORA Sağlık ve Yaşam Takip Uygulaması'nı kullanırken sağladığınız bilgilerin nasıl korunduğunu bu politikada bulabilirsiniz.</p>
+        <p class="lang-target" 
+           data-tr="Viorek Labs olarak, kullanıcılarımızın gizliliğine ve kişisel veri güvenliğine en üst düzeyde önem veriyoruz. Geliştirdiğimiz VIORA Akıllı Yaşam Asistanı uygulamasını kullanırken bizimle paylaştığınız verilerin hangi sınırlar dahilinde işlendiğini, nasıl korunduğunu ve veri gizliliği konusundaki kararlılığımızı bu Gizlilik Politikası kapsamında bilgilerinize sunarız." 
+           data-en="At Viorek Labs, we attach the utmost importance to our users' privacy and personal data security. In this Privacy Policy, we present to your attention how the data you share with us while using the VIORA Smart Life Assistant application we developed is processed, how it is protected, and our commitment to data privacy.">
+           Viorek Labs olarak, kullanıcılarımızın gizliliğine ve kişisel veri güvenliğine en üst düzeyde önem veriyoruz. Geliştirdiğimiz VIORA Akıllı Yaşam Asistanı uygulamasını kullanırken bizimle paylaştığınız verilerin hangi sınırlar dahilinde işlendiğini, nasıl korunduğunu ve veri gizliliği konusundaki kararlılığımızı bu Gizlilik Politikası kapsamında bilgilerinize sunarız.
+        </p>
       </div>
 
       <div class="policy-section">
-        <h2 class="lang-target" data-tr="2. Toplanan Veriler" data-en="2. Collected Data">2. Toplanan Veriler</h2>
-        <p class="lang-target" data-tr="Uygulamamızın temel işlevlerini yerine getirebilmesi için cihazınızda yerel olarak şu veriler işlenebilir:" data-en="In order for our application to fulfill its core functions, the following data may be processed locally on your device:">Uygulamamızın temel işlevlerini yerine getirebilmesi için cihazınızda yerel olarak şu veriler işlenebilir:</p>
+        <h2 class="lang-target" data-tr="2. İşlenen Veriler" data-en="2. Processed Data">2. İşlenen Veriler</h2>
+        <p class="lang-target" 
+           data-tr="Uygulamamızın temel işlevlerini eksiksiz yerine getirebilmesi, kişiselleştirilmiş asistan hizmetleri sunabilmesi ve kullanıcı deneyimini optimize edebilmesi adına cihazınızda tamamen yerel (local) olarak şu veri grupları işlenebilir:" 
+           data-en="In order for our application to fulfill its core functions fully, provide personalized assistant services, and optimize user experience, the following data groups may be processed entirely locally on your device:">
+           Uygulamamızın temel işlevlerini eksiksiz yerine getirebilmesi, kişiselleştirilmiş asistan hizmetleri sunabilmesi ve kullanıcı deneyimini optimize edebilmesi adına cihazınızda tamamen yerel (local) olarak şu veri grupları işlenebilir:
+        </p>
         <ul>
-          <li class="lang-target" data-tr="İlaç kullanım saatleri ve reçete bilgileri" data-en="Medication usage times and prescription details">İlaç kullanım saatleri ve reçete bilgileri</li>
-          <li class="lang-target" data-tr="Tansiyon ve kan şekeri ölçüm kayıtları" data-en="Blood pressure and blood sugar measurement logs">Tansiyon ve kan şekeri ölçüm kayıtları</li>
-          <li class="lang-target" data-tr="Acil durum anında anlık konum bilgisi (Yalnızca SOS butonu kullanıldığında)" data-en="Instant location data in case of emergency (Only when the SOS button is used)">Acil durum anında anlık konum bilgisi (Yalnızca SOS butonu kullanıldığında)</li>
+          <li class="lang-target" 
+              data-tr="Kişisel hatırlatıcılar, planlamalar ve günlük rutinlere dair yapılandırılmış bilgiler." 
+              data-en="Structured information regarding personal reminders, schedules, and daily routines.">
+              Kişisel hatırlatıcılar, planlamalar ve günlük rutinlere dair yapılandırılmış bilgiler.
+          </li>
+          <li class="lang-target" 
+              data-tr="Kullanıcı tarafından uygulama arayüzü üzerinden manuel olarak kaydedilen günlük ölçüm verileri (fiziksel parametreler, durum güncellemeleri) ve kişisel notlar." 
+              data-en="Daily measurement data (physical parameters, status updates) and personal notes manually recorded by the user through the application interface.">
+              Kullanıcı tarafından uygulama arayüzü üzerinden manuel olarak kaydedilen günlük ölçüm verileri (fiziksel parametreler, durum güncellemeleri) ve kişisel notlar.
+          </li>
+          <li class="lang-target" 
+              data-tr="Acil durumlarda güvenlik zincirinin çalışabilmesi adına anlık konum bilgisi (Bu veri yalnızca kullanıcı SOS butonunu manuel olarak kendisi tetiklediğinde aktifleşir ve işlenir)." 
+              data-en="Instant location data in order for the security chain to operate in emergencies (This data is activated and processed only when the user manually triggers the SOS button themselves).">
+              Acil durumlarda güvenlik zincirinin çalışabilmesi adına anlık konum bilgisi (Bu veri yalnızca kullanıcı SOS butonunu manuel olarak kendisi tetiklediğinde aktifleşir ve işlenir).
+          </li>
         </ul>
       </div>
 
       <div class="policy-section">
         <h2 class="lang-target" data-tr="3. Veri Güvenliği ve Depolama" data-en="3. Data Security and Storage">3. Veri Güvenliği ve Depolama</h2>
-        <p class="lang-target" data-tr="VIORA %100 gizlilik odaklı çalışır. Sağlık verileriniz Viorek Labs sunucularına aktarılmaz. Tüm veriler cihazınızda şifrelenmiş olarak tutulur. Kullanıcı kendi isteğiyle verilerini kişisel Google Drive hesabına yedekleyebilir." data-en="VIORA operates with a 100% privacy focus. Your health data is not transferred to Viorek Labs servers. All data is kept encrypted on your device. The user can optionally back up their data to their personal Google Drive account.">VIORA %100 gizlilik odaklı çalışır. Sağlık verileriniz Viorek Labs sunucularına aktarılmaz. Tüm veriler cihazınızda şifrelenmiş olarak tutulur. Kullanıcı kendi isteğiyle verilerini kişisel Google Drive hesabına yedekleyebilir.</p>
+        <p class="lang-target" 
+           data-tr="VIORA, 'Tasarımdan İtibaren Gizlilik' (Privacy by Design) ilkesini benimseyerek %100 gizlilik odaklı mimariyle inşa edilmiştir. Girdiğiniz hiçbir kişisel veya operasyonel veri Viorek Labs sunucularına ya da üçüncü taraf veri işleyicilere aktarılmaz. Tüm verileriniz, cihazınızın kendi güvenli depolama biriminde yüksek güvenlik standartlarında şifrelenmiş olarak saklanır. Kullanıcı, veri kaybı riskine karşı kendi isteği doğrultusunda verilerini kişisel Google Drive hesabına şifreli olarak yedekleme özgürlüğüne sahiptir." 
+           data-en="VIORA is built with a 100% privacy-focused architecture, adopting the 'Privacy by Design' principle. No personal or operational data you enter is transferred to Viorek Labs servers or third-party data processors. All your data is stored encrypted to high security standards within your device's own secure storage. The user has the freedom to optionally back up their data securely in encrypted form to their personal Google Drive account against the risk of data loss.">
+           VIORA, 'Tasarımdan İtibaren Gizlilik' (Privacy by Design) ilkesini benimseyerek %100 gizlilik odaklı mimariyle inşa edilmiştir. Girdiğiniz hiçbir kişisel veya operasyonel veri Viorek Labs sunucularına ya da üçüncü taraf veri işleyicilere aktarılmaz. Tüm verileriniz, cihazınızın kendi güvenli depolama biriminde yüksek güvenlik standartlarında şifrelenmiş olarak saklanır. Kullanıcı, veri kaybı riskine karşı kendi isteği doğrultusunda verilerini kişisel Google Drive hesabına şifreli olarak yedekleme özgürlüğüne sahiptir.
+        </p>
       </div>
 
       <div class="policy-section">
         <h2 class="lang-target" data-tr="4. İletişim" data-en="4. Contact">4. İletişim</h2>
-        <p class="lang-target" data-tr="Gizlilik politikamızla ilgili tüm sorularınız için bizimle iletişime geçebilirsiniz:" data-en="For any questions regarding our privacy policy, you can contact us at:">Gizlilik politikamızla ilgili tüm sorularınız için bizimle iletişime geçebilirsiniz:</p>
+        <p class="lang-target" 
+           data-tr="Gizlilik politikamız, veri işleme süreçlerimiz veya haklarınızla ilgili her türlü soru, görüş ve talepleriniz için resmi iletişim adresimiz üzerinden bizimle irtibata geçebilirsiniz:" 
+           data-en="For any questions, opinions, and requests regarding our privacy policy, data processing practices, or your rights, you can contact us through our official communication address:">
+           Gizlilik politikamız, veri işleme süreçlerimiz veya haklarınızla ilgili her türlü soru, görüş ve talepleriniz için resmi iletişim adresimiz üzerinden bizimle irtibata geçebilirsiniz:
+        </p>
         <span class="contact-email">admin@vioreklabs.com</span>
       </div>
 
