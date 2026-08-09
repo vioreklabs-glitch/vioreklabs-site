@@ -102,9 +102,9 @@
     box-shadow: 0 0 10px var(--red);
   }
   .nav-right { display: flex; align-items: center; gap: 32px; }
-  .nav-links { display: flex; gap: 32px; }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
   .nav-links a { font-size: 13px; color: var(--muted); transition: color 0.2s; }
-  .nav-links a:hover { color: var(--silver); }
+  .nav-links a.nav-item:hover { color: var(--silver); }
 
   .lang-btn {
     background: rgba(255, 255, 255, 0.03);
@@ -120,7 +120,7 @@
   }
   .lang-btn:hover { border-color: var(--red); box-shadow: 0 0 10px var(--red-glow); background: rgba(232, 36, 44, 0.05); }
 
-  @media (max-width: 768px) { .nav-links { display: none; } }
+  @media (max-width: 950px) { .nav-links { display: none; } }
 
   /* ---------- HERO ---------- */
   .hero {
@@ -229,12 +229,11 @@
   .card-slides img { 
     width: 50%; 
     height: 100%; 
-    object-fit: contain; /* Resmi kırpmaz, orijinal halini kutuya tam sığdırır */
+    object-fit: contain;
     object-position: center; 
     display: block;
   }
   
-  /* Üzerine Gelince Slider'ı Kayan Efekt */
   .arcade-card:hover .card-slides { transform: translateX(-50%); }
   
   .card-body { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
@@ -285,14 +284,15 @@
     </a>
     <div class="nav-right">
       <div class="nav-links">
-        <a href="#ekosistem" class="lang-target" data-tr="Ekosistem" data-en="Ecosystem">Ekosistem</a>
-        <a href="#viora" class="lang-target" data-tr="VIORA" data-en="VIORA">VIORA</a>
-        <a href="#ozellikler" class="lang-target" data-tr="Özellik Keşfi" data-en="Features">Özellik Keşfi</a>
-        <a href="#arcade" class="lang-target" data-tr="🕹️ Oyunlar" data-en="🕹️ Games">🕹️ Oyunlar</a>
-        <a href="#faq" class="lang-target" data-tr="SSS" data-en="FAQ">SSS</a>
-        <a href="#iletisim" class="lang-target" data-tr="İletişim" data-en="Contact">İletişim</a>
+        <a href="#ekosistem" class="nav-item lang-target" data-tr="Ekosistem" data-en="Ecosystem">Ekosistem</a>
+        <a href="#viora" class="nav-item lang-target" data-tr="VIORA" data-en="VIORA">VIORA</a>
+        <a href="#ozellikler" class="nav-item lang-target" data-tr="Özellik Keşfi" data-en="Features">Özellik Keşfi</a>
+        <a href="#arcade" class="nav-item lang-target" data-tr="🕹️ Oyunlar" data-en="🕹️ Games">🕹️ Oyunlar</a>
         
-        <a href="viora-gizlilik.html" class="lang-target" data-tr="Gizlilik" data-en="Privacy" style="border: 1px solid rgba(232, 36, 44, 0.3); padding: 2px 8px; border-radius: 4px; background: rgba(232, 36, 44, 0.05);">Gizlilik</a>
+        <!-- Navbar İki Ayrı Gizlilik Linki -->
+        <a href="viora-gizlilik.html" class="lang-target" data-tr="VIORA Gizlilik" data-en="VIORA Privacy" style="border: 1px solid rgba(232, 36, 44, 0.3); padding: 4px 10px; border-radius: 6px; background: rgba(232, 36, 44, 0.05); font-weight: 600; color: var(--silver); font-size: 12px; transition: 0.3s;" onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='rgba(232, 36, 44, 0.3)'">VIORA Gizlilik</a>
+        
+        <a href="volyra-gizlilik.html" class="lang-target" data-tr="VOLYRA Gizlilik" data-en="VOLYRA Privacy" style="border: 1px solid rgba(232, 36, 44, 0.3); padding: 4px 10px; border-radius: 6px; background: rgba(232, 36, 44, 0.05); font-weight: 600; color: var(--silver); font-size: 12px; transition: 0.3s;" onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='rgba(232, 36, 44, 0.3)'">VOLYRA Gizlilik</a>
       </div>
       <button class="lang-btn" onclick="toggleLanguage()" aria-label="Switch language to English">EN</button>
     </div>
@@ -337,7 +337,7 @@
         </div>
         <div class="eco-status lang-target" data-tr="YAKINDA" data-en="COMING SOON">YAKINDA</div>
       </div>
-      <div class="eco-tile"><div><span class="mono">02</span></div><div><h3>???</h3><p class="lang-target" data-tr="Yeni Proje" data-en="New Project">Yeni Proje</p></div><div class="eco-status lang-target" data-tr="PLANLANIYOR" data-en="PLANNED">PLANLANIYOR</div></div>
+      <div class="eco-tile"><div><span class="mono">02</span></div><div><h3>VOLYRA</h3><p class="lang-target" data-tr="Rusça Akademi" data-en="Russian Academy">Rusça Akademi</p></div><div class="eco-status lang-target" data-tr="AKTİF" data-en="ACTIVE" style="border-color: #00e676; color: #00e676;">AKTİF</div></div>
       <div class="eco-tile"><div><span class="mono">03</span></div><div><h3>???</h3><p class="lang-target" data-tr="Yeni Proje" data-en="New Project">Yeni Proje</p></div><div class="eco-status lang-target" data-tr="PLANLANIYOR" data-en="PLANNED">PLANLANIYOR</div></div>
       <div class="eco-tile"><div><span class="mono">04</span></div><div><h3>???</h3><p class="lang-target" data-tr="Yeni Proje" data-en="New Project">Yeni Proje</p></div><div class="eco-status lang-target" data-tr="PLANLANIYOR" data-en="PLANNED">PLANLANIYOR</div></div>
     </div>
@@ -509,9 +509,13 @@
   <div class="wrap">
     <p class="mono" style="font-size: 10px;">© 2026 VIOREK LABS — UNLIMITED TECHNOLOGY</p>
     
-    <div style="margin-top: 15px;">
-      <a href="viora-gizlilik.html" class="lang-target" data-tr="Gizlilik Politikası" data-en="Privacy Policy" style="color: var(--muted); font-size: 13px; text-decoration: underline; font-family: 'Inter', sans-serif; transition: 0.3s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--muted)'">
-        Gizlilik Politikası
+    <div style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+      <!-- Footer İki Ayrı Gizlilik Linki -->
+      <a href="viora-gizlilik.html" class="lang-target" data-tr="VIORA Gizlilik Politikası" data-en="VIORA Privacy Policy" style="color: var(--silver); font-size: 13px; font-weight: 500; text-decoration: none; font-family: 'Inter', sans-serif; transition: 0.3s; padding: 6px 16px; border: 1px solid rgba(232, 36, 44, 0.3); border-radius: 6px; background: rgba(232, 36, 44, 0.05);" onmouseover="this.style.borderColor='var(--red)'; this.style.boxShadow='0 0 10px rgba(232, 36, 44, 0.2)'" onmouseout="this.style.borderColor='rgba(232, 36, 44, 0.3)'; this.style.boxShadow='none'">
+        VIORA Gizlilik Politikası
+      </a>
+      <a href="volyra-gizlilik.html" class="lang-target" data-tr="VOLYRA Gizlilik Politikası" data-en="VOLYRA Privacy Policy" style="color: var(--silver); font-size: 13px; font-weight: 500; text-decoration: none; font-family: 'Inter', sans-serif; transition: 0.3s; padding: 6px 16px; border: 1px solid rgba(232, 36, 44, 0.3); border-radius: 6px; background: rgba(232, 36, 44, 0.05);" onmouseover="this.style.borderColor='var(--red)'; this.style.boxShadow='0 0 10px rgba(232, 36, 44, 0.2)'" onmouseout="this.style.borderColor='rgba(232, 36, 44, 0.3)'; this.style.boxShadow='none'">
+        VOLYRA Gizlilik Politikası
       </a>
     </div>
 
