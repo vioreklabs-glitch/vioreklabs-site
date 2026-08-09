@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Gizlilik Politikası | Политика конфиденциальности — VOLYRA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #161622;
+            --bg-hover: #1e1e2d;
+            --accent: #e94560;
+            --accent-glow: rgba(233, 69, 96, 0.15);
+            --text-primary: #eeeeff;
+            --text-secondary: #8888aa;
+            --text-muted: #555577;
+            --border: #2e2e44;
+            --border-hover: #3d3d5c;
+            --success: #00e676;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(233, 69, 96, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(233, 69, 96, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lang-switcher {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .lang-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 12px 24px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--accent), #ff6b6b);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.3);
+        }
+
+        .logo-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 2px;
+        }
+
+        .logo-text span { color: var(--accent); }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle { color: var(--text-secondary); font-size: 15px; }
+
+        .last-updated {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 16px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(233, 69, 96, 0.2);
+            border-radius: 20px;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(233, 69, 96, 0.08), rgba(233, 69, 96, 0.02));
+            border: 1px solid rgba(233, 69, 96, 0.2);
+            border-left: 4px solid var(--accent);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -50%;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        .highlight-box strong {
+            color: var(--accent);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box p {
+            margin-top: 8px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .section { margin-bottom: 40px; scroll-margin-top: 24px; }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px; height: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        ul { list-style: none; padding: 0; margin-bottom: 16px; }
+
+        ul li {
+            color: var(--text-secondary);
+            padding: 8px 0 8px 28px;
+            position: relative;
+            font-size: 15px;
+        }
+
+        ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .data-table th {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 16px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover td { background: var(--bg-hover); }
+
+        .contact-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .contact-box h3 {
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(233, 69, 96, 0.15);
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .footer-brand {
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 24px; }
+            .container { padding: 24px 16px; }
+            .data-table { font-size: 13px; }
+            .data-table th, .data-table td { padding: 12px; }
+            .contact-links { flex-direction: column; align-items: center; }
+        }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('tr', this)">Türkçe</button>
+        <button class="lang-btn" onclick="setLang('en', this)">English</button>
+        <button class="lang-btn" onclick="setLang('ru', this)">Русский</button>
+    </div>
+
+    <div class="header">
+        <div class="logo-badge">
+            <div class="logo-icon">🛡️</div>
+            <div class="logo-text">VI<span>O</span>REK LABS</div>
+        </div>
+        
+        <div id="title-tr" class="lang-content active">
+            <h1>Gizlilik Politikası</h1>
+            <p class="subtitle">VOLYRA Rusça Akademi</p>
+            <span class="last-updated">SON GÜNCELLEME: 9 AĞUSTOS 2026</span>
+        </div>
+        
+        <div id="title-en" class="lang-content">
+            <h1>Privacy Policy</h1>
+            <p class="subtitle">VOLYRA Russian Academy</p>
+            <span class="last-updated">LAST UPDATED: AUGUST 9, 2026</span>
+        </div>
+        
+        <div id="title-ru" class="lang-content">
+            <h1>Политика конфиденциальности</h1>
+            <p class="subtitle">VOLYRA Русская Академия</p>
+            <span class="last-updated">ПОСЛЕДНЕЕ ОБНОВЛЕНИЕ: 9 АВГУСТА 2026</span>
+        </div>
+    </div>
+
+    <!-- ===== TÜRKÇE ===== -->
+    <div id="content-tr" class="lang-content active">
+        <div class="highlight-box">
+            <strong>Temel İlkemiz</strong>
+            <p>Sizin veriniz, sizin cihazınızdadır. Başka hiçbir yerde değil. VOLYRA hiçbir kişisel veri toplamaz, sunuculara iletmez veya üçüncü taraflarla paylaşmaz.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">01</span> Genel Bilgi</h2>
+            <p>VOLYRA Rusça Akademi ("Uygulama"), kullanıcılarına tamamen çevrimdışı (offline) bir ortamda Rusça YDS hazırlık imkanı sunan bir eğitim platformudur.</p>
+            <p><strong>Geliştirici:</strong> Viorek Labs<br>
+            <strong>İletişim:</strong> admin@vioreklabs.com<br>
+            <strong>Sosyal Medya:</strong> instagram.com/vioreklabs</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">02</span> Toplanan Kişisel Veriler</h2>
+            <p><strong style="color: var(--accent);">VOLYRA hiçbir kişisel veri toplamaz.</strong></p>
+            <p>Aşağıdaki verilerden hiçbiri bizim sunucularımıza, bulut sistemlerimize veya üçüncü taraflara iletilmez:</p>
+            <ul>
+                <li>Ad, soyad, e-posta adresi, telefon numarası</li>
+                <li>Konum bilgisi</li>
+                <li>Cihaz kimliği (Device ID), IP adresi</li>
+                <li>Kullanım alışkanlıkları ve analitik veriler</li>
+            </ul>
+            <p>Uygulama, kullanıcı kaydı (login) sistemi içermez ve anonim olarak kullanılır.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">03</span> Yerel Depolama</h2>
+            <p>Uygulama içinde üretilen veya girilen tüm veriler, yalnızca cihazınızın dahili hafızasında (Android Room Veritabanı ve yerel dosya sistemi) saklanır:</p>
+            <ul>
+                <li>Çözülen soru istatistikleri ve skorlar</li>
+                <li>Kaydedilen kelimeler ve notlar</li>
+                <li>Hata defteri (yanlış çözülen sorular)</li>
+                <li>Telaffuz pratiği sonuçları</li>
+                <li>Kullanıcı tarafından eklenen özel makaleler ve metinler</li>
+                <li>Uygulama ayarları (ses tercihleri, tema, hatırlatıcılar)</li>
+            </ul>
+            <p><strong>Bu veriler:</strong> sadece sizin cihazınızda kalır; başka bir cihaza otomatik senkronize edilmez; uygulamayı kaldırdığınızda cihazınızdan silinir.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">04</span> Mikrofon ve Ses Verileri</h2>
+            <p>Uygulama, "Telaffuz Pratiği" ve "Canlı Dinleme" modlarında cihaz mikrofonunuza erişim ister. Ses verileri <strong>cihaz üzerinde</strong> işlenir, sunucularımıza iletilmez ve işlem bitiminde otomatik olarak silinir. Mikrofon izni, Android sistem ayarlarından istediğiniz zaman devre dışı bırakılabilir.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">05</span> İnternet ve Üçüncü Taraf Hizmetler</h2>
+            <p>VOLYRA, temel işlevlerini yerine getirmek için internet bağlantısına ihtiyaç duymaz. Uygulama tamamen çevrimdışı çalışacak şekilde tasarlanmıştır.</p>
+            <table class="data-table">
+                <tr><th>Hizmet</th><th>Amaç</th><th>Veri Paylaşımı</th></tr>
+                <tr><td>Google Play In-App Review</td><td>Kullanıcı değerlendirmesi</td><td>Google Play Store verileri</td></tr>
+                <tr><td>YouTube Android Player</td><td>Eğitim videoları</td><td>Google LLC politikası</td></tr>
+                <tr><td>Android SpeechRecognizer</td><td>Çevrimdışı ses tanıma</td><td>Cihazda işlenir, paylaşım yok</td></tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">06</span> Bildirimler</h2>
+            <p>Uygulama, "Günlük Çalışma Hatırlatıcısı" göndermek için cihazınızın yerel bildirim sistemini kullanır. Bu bildirimler cihazınızın dahili saati ve WorkManager sistemi tarafından tetiklenir; sunucu tabanlı push bildirimi kullanmaz ve internet bağlantısı gerektirmez.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">07</span> Çocukların Gizliliği</h2>
+            <p>VOLYRA Rusça Akademi, 13 yaş ve üzeri kullanıcılar için tasarlanmıştır. Uygulama, 13 yaş altı çocuklardan bilerek kişisel veri toplamaz.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">08</span> Kullanıcı Hakları</h2>
+            <ul>
+                <li><strong>Silme Hakkı:</strong> Uygulamayı kaldırarak tüm verilerinizi anında silebilirsiniz.</li>
+                <li><strong>Erişim Hakkı:</strong> Tüm verileriniz cihazınızda olduğu için dilediğiniz zaman erişebilirsiniz.</li>
+                <li><strong>İtiraz Hakkı:</strong> Uygulama hiçbir profilleme veya otomatik karar mekanizması kullanmaz.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">09</span> Politika Değişiklikleri</h2>
+            <p>Bu Gizlilik Politikası, yasal düzenlemeler veya uygulama özelliklerindeki değişiklikler doğrultusunda güncellenebilir. Önemli değişiklikler durumunda, uygulama içinde bir bildirim gösterilecektir.</p>
+        </div>
+
+        <div class="contact-box">
+            <h3>İletişim</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Bu Gizlilik Politikası hakkında sorularınız varsa bizimle iletişime geçebilirsiniz:</p>
+            <div class="contact-links">
+                <a href="mailto:admin@vioreklabs.com" class="contact-link">📧 admin@vioreklabs.com</a>
+                <a href="https://vioreklabs.com" class="contact-link">🌐 vioreklabs.com</a>
+                <a href="https://instagram.com/vioreklabs" class="contact-link">📸 @vioreklabs</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ENGLISH ===== -->
+    <div id="content-en" class="lang-content">
+        <div class="highlight-box">
+            <strong>Our Core Principle</strong>
+            <p>Your data stays on your device. Nowhere else. VOLYRA does not collect, transmit, or share any personal data with third parties.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">01</span> Overview</h2>
+            <p>VOLYRA Russian Academy ("the App") is an educational platform designed for Russian YDS exam preparation, operating entirely in an offline environment.</p>
+            <p><strong>Developer:</strong> Viorek Labs<br>
+            <strong>Contact:</strong> admin@vioreklabs.com<br>
+            <strong>Social:</strong> instagram.com/vioreklabs</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">02</span> Data Collection</h2>
+            <p><strong style="color: var(--accent);">VOLYRA does not collect any personal data.</strong></p>
+            <p>None of the following data is transmitted to our servers, cloud systems, or third parties:</p>
+            <ul>
+                <li>Name, surname, email address, phone number</li>
+                <li>Location data</li>
+                <li>Device ID, IP address</li>
+                <li>Usage habits and analytics data</li>
+            </ul>
+            <p>The App does not include a user registration (login) system and is used anonymously.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">03</span> Local Storage</h2>
+            <p>All data produced or entered within the App is stored exclusively in your device's internal memory (Android Room Database and local file system):</p>
+            <ul>
+                <li>Solved question statistics and scores</li>
+                <li>Saved words and notes</li>
+                <li>Mistake notebook (incorrectly solved questions)</li>
+                <li>Pronunciation practice results</li>
+                <li>User-added custom articles and texts</li>
+                <li>App settings (sound preferences, theme, reminders)</li>
+            </ul>
+            <p><strong>This data:</strong> remains only on your device; is not automatically synchronized with other devices; is deleted from your device when the App is uninstalled.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">04</span> Microphone & Audio Data</h2>
+            <p>The App requests access to your device's microphone in "Pronunciation Practice" and "Live Listening" modes. Audio data is processed <strong>locally on the device</strong>, is not transmitted to our servers, and is automatically deleted after processing. Microphone permission can be disabled at any time from Android system settings.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">05</span> Internet & Third-Party Services</h2>
+            <p>VOLYRA does not require an internet connection to perform its core functions. The App is designed to work completely offline.</p>
+            <table class="data-table">
+                <tr><th>Service</th><th>Purpose</th><th>Data Sharing</th></tr>
+                <tr><td>Google Play In-App Review</td><td>User rating collection</td><td>Google Play Store data</td></tr>
+                <tr><td>YouTube Android Player</td><td>Educational videos</td><td>Google LLC policy</td></tr>
+                <tr><td>Android SpeechRecognizer</td><td>Offline speech recognition</td><td>Processed on device, no sharing</td></tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">06</span> Notifications</h2>
+            <p>The App uses your device's local notification system to send "Daily Study Reminders." These notifications are triggered by your device's internal clock and WorkManager system; they do not use server-based push notifications and do not require an internet connection.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">07</span> Children's Privacy</h2>
+            <p>VOLYRA Russian Academy is designed for users aged 13 and older. The App does not knowingly collect personal data from children under 13.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">08</span> User Rights</h2>
+            <ul>
+                <li><strong>Right to Deletion:</strong> You can instantly delete all your data by uninstalling the App.</li>
+                <li><strong>Right to Access:</strong> Since all data is on your device, you can access it at any time.</li>
+                <li><strong>Right to Object:</strong> The App does not use any profiling or automated decision-making mechanisms.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">09</span> Policy Changes</h2>
+            <p>This Privacy Policy may be updated in accordance with legal regulations or changes in App features. In case of significant changes, a notification will be displayed within the App.</p>
+        </div>
+
+        <div class="contact-box">
+            <h3>Contact</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">If you have any questions about this Privacy Policy, please contact us:</p>
+            <div class="contact-links">
+                <a href="mailto:admin@vioreklabs.com" class="contact-link">📧 admin@vioreklabs.com</a>
+                <a href="https://vioreklabs.com" class="contact-link">🌐 vioreklabs.com</a>
+                <a href="https://instagram.com/vioreklabs" class="contact-link">📸 @vioreklabs</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== РУССКИЙ ===== -->
+    <div id="content-ru" class="lang-content">
+        <div class="highlight-box">
+            <strong>Наш основной принцип</strong>
+            <p>Ваши данные находятся только на вашем устройстве. Больше нигде. VOLYRA не собирает, не передаёт и не делится с третьими лицами никакими персональными данными.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">01</span> Общие сведения</h2>
+            <p>VOLYRA Русская Академия («Приложение») — это образовательная платформа для подготовки к российскому экзамену YDS, работающая полностью в автономном (офлайн) режиме.</p>
+            <p><strong>Разработчик:</strong> Viorek Labs<br>
+            <strong>Контакт:</strong> admin@vioreklabs.com<br>
+            <strong>Социальные сети:</strong> instagram.com/vioreklabs</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">02</span> Собираемые персональные данные</h2>
+            <p><strong style="color: var(--accent);">VOLYRA не собирает никаких персональных данных.</strong></p>
+            <p>Ни одна из следующих категорий данных не передаётся на наши серверы, в облачные системы или третьим лицам:</p>
+            <ul>
+                <li>Имя, фамилия, адрес электронной почты, номер телефона</li>
+                <li>Местоположение</li>
+                <li>Идентификатор устройства (Device ID), IP-адрес</li>
+                <li>Данные об использовании и аналитика</li>
+            </ul>
+            <p>Приложение не содержит системы регистрации пользователей и используется анонимно.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">03</span> Локальное хранение</h2>
+            <p>Все данные, созданные или введённые внутри Приложения, хранятся исключительно во внутренней памяти вашего устройства:</p>
+            <ul>
+                <li>Статистика решённых вопросов и баллы</li>
+                <li>Сохранённые слова и заметки</li>
+                <li>Тетрадь ошибок</li>
+                <li>Результаты практики произношения</li>
+                <li>Пользовательские статьи и тексты</li>
+                <li>Настройки приложения</li>
+            </ul>
+            <p><strong>Эти данные:</strong> остаются только на вашем устройстве; не синхронизируются автоматически с другими устройствами; удаляются с устройства при удалении Приложения.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">04</span> Микрофон и аудиоданные</h2>
+            <p>Приложение запрашивает доступ к микрофону устройства в режимах «Практика произношения» и «Живое прослушивание». Аудиоданные обрабатываются <strong>исключительно на устройстве</strong>, не передаются на наши серверы и автоматически удаляются после завершения обработки.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">05</span> Интернет и сторонние сервисы</h2>
+            <p>VOLYRA <strong>не требует подключения к интернету</strong> для выполнения основных функций. Приложение разработано для полностью автономной работы.</p>
+            <table class="data-table">
+                <tr><th>Сервис</th><th>Назначение</th><th>Обмен данными</th></tr>
+                <tr><td>Google Play In-App Review</td><td>Сбор оценок пользователей</td><td>Данные Google Play Store</td></tr>
+                <tr><td>YouTube Android Player</td><td>Обучающие видео</td><td>Политика Google LLC</td></tr>
+                <tr><td>Android SpeechRecognizer</td><td>Автономное распознавание речи</td><td>Обработка на устройстве</td></tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">06</span> Уведомления</h2>
+            <p>Приложение использует локальную систему уведомлений устройства для отправки «Ежедневного напоминания об учёбе». Эти уведомления инициируются внутренними часами устройства и системой WorkManager; не используют серверные push-уведомления и не требуют подключения к интернету.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">07</span> Конфиденциальность детей</h2>
+            <p>VOLYRA Русская Академия предназначена для пользователей в возрасте 13 лет и старше. Приложение не собирает персональные данные детей младше 13 лет сознательно.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">08</span> Права пользователя</h2>
+            <ul>
+                <li><strong>Право на удаление:</strong> Удалив Приложение, вы мгновенно удаляете все свои данные.</li>
+                <li><strong>Право на доступ:</strong> Поскольку все данные находятся на вашем устройстве, вы можете получить к ним доступ в любое время.</li>
+                <li><strong>Право на возражение:</strong> Приложение не использует профилирование или автоматизированные механизмы принятия решений.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">09</span> Изменения политики</h2>
+            <p>Настоящая Политика конфиденциальности может быть обновлена в связи с изменениями в законодательстве или функционале Приложения. В случае существенных изменений внутри Приложения будет показано уведомление.</p>
+        </div>
+
+        <div class="contact-box">
+            <h3>Контактная информация</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Если у вас есть вопросы по настоящей Политике конфиденциальности, свяжитесь с нами:</p>
+            <div class="contact-links">
+                <a href="mailto:admin@vioreklabs.com" class="contact-link">📧 admin@vioreklabs.com</a>
+                <a href="https://vioreklabs.com" class="contact-link">🌐 vioreklabs.com</a>
+                <a href="https://instagram.com/vioreklabs" class="contact-link">📸 @vioreklabs</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-brand">VIOREK LABS</div>
+        <p>© 2026 Viorek Labs. Tüm hakları saklıdır. / All rights reserved. / Все права защищены.</p>
+    </div>
+
+</div>
+
+<script>
+    function setLang(lang, btn) {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+        document.getElementById('content-' + lang).classList.add('active');
+        document.getElementById('title-' + lang).classList.add('active');
+        
+        document.documentElement.lang = lang === 'tr' ? 'tr' : lang === 'en' ? 'en' : 'ru';
+    }
+</script>
+
+</body>
+</html>
