@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy & KVKK | VERITAS — Viorek Labs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #07070B;
+            --bg-secondary: #12121a;
+            --bg-card: #1A1A24;
+            --bg-hover: #22222e;
+            --accent: #d4af37; /* VERITAS Altın Rengi */
+            --accent-glow: rgba(212, 175, 55, 0.15);
+            --text-primary: #ECEDF1;
+            --text-secondary: #A6A6B3;
+            --text-muted: #71717F;
+            --border: rgba(38, 38, 47, 0.6);
+            --border-hover: rgba(212, 175, 55, 0.4);
+            --success: #00e676;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- DİL SEÇİCİ --- */
+        .lang-switcher {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .lang-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .lang-btn.active {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; animation: fadeIn 0.4s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* ------------------ */
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 12px 24px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            transition: 0.3s;
+        }
+
+        .logo-badge:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, #12121a, #1a1a24);
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .logo-text {
+            font-size: 14px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 2px;
+        }
+
+        .logo-text span { color: var(--accent); }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle { color: var(--text-secondary); font-size: 16px; }
+
+        .last-updated {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 16px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            color: var(--accent);
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.02));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-left: 4px solid var(--accent);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box strong {
+            color: var(--accent);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .highlight-box p {
+            margin-top: 8px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .section { margin-bottom: 40px; }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px; height: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        ul { list-style: none; padding: 0; margin-bottom: 16px; }
+
+        ul li {
+            color: var(--text-secondary);
+            padding: 8px 0 8px 28px;
+            position: relative;
+            font-size: 15px;
+        }
+
+        ul li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 14px;
+        }
+
+        .warning-box {
+            background: rgba(232, 36, 44, 0.05);
+            border: 1px solid rgba(232, 36, 44, 0.2);
+            border-left: 4px solid #E8242C;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .warning-box h4 {
+            color: #E8242C;
+            margin-bottom: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .warning-box p {
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
+        .contact-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .contact-box h3 {
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 24px; }
+            .container { padding: 30px 16px; }
+            .contact-links { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('tr', this)">TR</button>
+        <button class="lang-btn" onclick="setLang('en', this)">EN</button>
+    </div>
+
+    <div class="header">
+        <div class="logo-badge">
+            <div class="logo-icon">⚖️</div>
+            <div class="logo-text">VI<span>O</span>REK LABS</div>
+        </div>
+        
+        <div id="title-tr" class="lang-content active">
+            <h1>KVKK, Kullanım Şartları ve Gizlilik Politikası</h1>
+            <p class="subtitle">VERITAS — Akıllı Sistemler & Akademik İnceleme Platformu</p>
+            <span class="last-updated">SON GÜNCELLEME: AĞUSTOS 2026</span>
+        </div>
+
+        <div id="title-en" class="lang-content">
+            <h1>Privacy Policy, Terms of Use & Data Protection</h1>
+            <p class="subtitle">VERITAS — Smart Systems & Academic Review Platform</p>
+            <span class="last-updated">LAST UPDATED: AUGUST 2026</span>
+        </div>
+    </div>
+
+    <!-- ================= TÜRKÇE İÇERİK ================= -->
+    <div id="content-tr" class="lang-content active">
+        <div class="highlight-box">
+            <strong>Temel Taahhüdümüz</strong>
+            <p>Uygulamayı kullanmaya başlayarak, aşağıda detaylandırılan Kişisel Verilerin Korunması Kanunu (KVKK) aydınlatma metnini, kullanım şartlarını ve gizlilik politikamızı okumuş, anlamış ve kabul etmiş sayılırsınız.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">01</span> Veri Sorumlusu ve Genel Kapsam</h2>
+            <p>Bu uygulama (bundan böyle "VERITAS" olarak anılacaktır), <strong>Viorek Labs</strong> tarafından geliştirilmiş ve yayınlanmıştır. Viorek Labs, kullanıcı gizliliğini temel prensip olarak benimser ve verilerinizin güvenliğini sağlamak için evrensel standartlarda şifreleme ve yerel depolama mimarileri kullanır.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">02</span> İşlenen Veriler ve Konum Servisleri (GPS)</h2>
+            <p>VERITAS, astronomik hesaplamalar, dini vakitler (namaz, dua saatleri) ve kıble yönünün hassas bir şekilde tayin edilebilmesi amacıyla cihazınızın GPS (Konum) verilerine ihtiyaç duyar.</p>
+            <ul>
+                <li><strong>Anlık Erişim:</strong> Konum izni yalnızca "Uygulamayı kullanırken" geçerli olacak şekilde talep edilir. Arka planda gizli konum takibi yapılmaz.</li>
+                <li><strong>Yerel İşlem:</strong> Konum verileriniz hiçbir harici sunucuya aktarılmaz, veritabanlarımızda kaydedilmez ve üçüncü taraflarla paylaşılmaz. Tüm hesaplamalar cihazınızın yerel işlemcisi (CPU) üzerinde gerçekleşir.</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h4>SORUMLULUK REDDİ (DISCLAIMER) VE HASSASİYET BİLDİRİMİ</h4>
+            <p><strong>Çeviri ve Nüans Farklılıkları:</strong> Bu uygulamada sunulan Kutsal Kitap (Kur'an-ı Kerim, İncil, Tevrat, Zebur) mealleri ve metinleri, dünya çapında kabul görmüş açık kaynaklı veritabanlarından derlenmiştir. Diller arası çeviri zorlukları veya teolojik yorum farkları nedeniyle orijinal metinlerden nüans farkları içerebilir.<br><br>
+            <strong>Dini Otorite Değildir:</strong> VERITAS ve Viorek Labs, tamamen bağımsız ve seküler bir teknoloji girişimidir; hiçbir dini kurum, vakıf, tarikat veya cemaate bağlı değildir. Uygulama bir "fetva" veya "kesin dini hüküm" mercii olarak kullanılamaz.<br><br>
+            <strong>Hesaplama Toleransları:</strong> Konum tabanlı vakit hesaplamalarında veya kıble pusulasında; cihazınızın donanımsal kalibrasyonundan, manyetik alan sapmalarından veya GPS sinyal zayıflığından kaynaklanabilecek hatalardan geliştirici taraf sorumlu tutulamaz.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">03</span> Akademik Kapsam ve İçerik Kullanımı</h2>
+            <p>Uygulama içerisinde sunulan tüm metinler, salt inanç pratiği sağlamanın ötesinde; teolojik araştırma, akademik karşılaştırma ve tarihsel bilgilendirme amacı taşımaktadır. Kullanıcı, uygulamayı indirip kullanarak bu metinleri akademik birer veri kaynağı olarak incelediğini kabul eder.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">04</span> Reklam Politikası ve Analitik Veriler</h2>
+            <p>Ücretsiz sürümümüzün sürdürülebilirliği için uygulama içerisinde Google AdMob altyapısı aracılığıyla reklamlar gösterilmektedir. Viorek Labs, uygulamanın konseptine ve hassasiyetine uygun olarak reklam filtrelemelerini en üst düzeyde tutar:</p>
+            <ul>
+                <li>Gösterilen reklamlarda; <strong>alkol, kumar, yetişkinlere yönelik içerikler (cinsellik vb.) ve suç/şiddet unsuru</strong> barındıran tüm kategoriler manuel olarak engellenmiştir.</li>
+                <li>Uygulama performansını ölçmek ve olası çökmeleri (crash) tespit etmek amacıyla, kimliksizleştirilmiş (anonim) kullanım istatistikleri Firebase Analytics aracılığıyla toplanabilir. Bu veriler kimliğinizle eşleştirilemez.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">05</span> Çevrimdışı (Offline) Çalışma ve Fikri Mülkiyet</h2>
+            <p>VERITAS, temel fonksiyonlarını (metin okuma, arama yapma, kaydedilmiş konum üzerinden vakit hesaplama) internet bağlantısı gerekmeden yerine getirecek bir yazılım mimarisiyle tasarlanmıştır.</p>
+            <p>Uygulamanın arayüz tasarımı, "VERITAS" markası, logoları ve yazılım kodlarının tüm fikri mülkiyet hakları Viorek Labs'a aittir. Geliştiricinin yazılı izni olmadan kaynak kodlar kopyalanamaz, tersine mühendislik (reverse engineering) yapılamaz veya ticari amaçla çoğaltılamaz.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">06</span> Çocukların Gizliliği ve KVKK Hakları</h2>
+            <p>VERITAS uygulaması, içeriği gereği genel kitleye hitap etmekle birlikte, 13 yaş altı çocuklardan bilerek herhangi bir veri talep etmez veya toplamaz. KVKK ve GDPR kapsamında kullanıcılar şu haklara sahiptir:</p>
+            <ul>
+                <li><strong>Veri Silme Hakkı:</strong> Uygulamayı cihazınızdan kaldırdığınız (uninstall) anda tüm ayarlarınız ve yerel verileriniz cihazınızdan tamamen silinir.</li>
+                <li><strong>Erişim ve İtiraz:</strong> Sunucularımızda size ait bir profil veya veri tutulmadığı için, hakkınızda profilleme yapılması veya otomatik karar mekanizmalarının işletilmesi söz konusu değildir.</li>
+            </ul>
+        </div>
+
+        <div class="contact-box">
+            <h3>Bizimle İletişime Geçin</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Bu kullanım şartları, sorumluluk reddi veya gizlilik politikamız hakkında sorularınız, geri bildirimleriniz veya veri yönetimi talepleriniz için bize ulaşabilirsiniz:</p>
+            <div class="contact-links">
+                <a href="mailto:admin@vioreklabs.com" class="contact-link">📧 admin@vioreklabs.com</a>
+                <a href="https://vioreklabs.com" class="contact-link">🌐 vioreklabs.com</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= ENGLISH CONTENT ================= -->
+    <div id="content-en" class="lang-content">
+        <div class="highlight-box">
+            <strong>Our Core Commitment</strong>
+            <p>By starting to use the application, you are deemed to have read, understood, and accepted the data protection notice, terms of use, and privacy policy detailed below.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">01</span> Data Controller & General Scope</h2>
+            <p>This application (hereinafter referred to as "VERITAS") is developed and published by <strong>Viorek Labs</strong>. Viorek Labs adopts user privacy as a fundamental principle and uses universal standard encryption and local storage architectures to ensure the security of your data.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">02</span> Processed Data and Location Services (GPS)</h2>
+            <p>VERITAS requires your device's GPS (Location) data to accurately determine astronomical calculations, prayer times, and Qibla direction.</p>
+            <ul>
+                <li><strong>Instant Access:</strong> Location permission is only requested to be valid "While using the app". No hidden location tracking is performed in the background.</li>
+                <li><strong>Local Processing:</strong> Your location data is never transferred to any external server, is not saved in our databases, and is not shared with third parties. All calculations are performed on your device's local processor (CPU).</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h4>DISCLAIMER AND SENSITIVITY NOTICE</h4>
+            <p><strong>Translation and Nuance Differences:</strong> The translations and texts of the Holy Books (Quran, Bible, Torah, Psalms) presented in this application are compiled from globally accepted open-source databases. Due to cross-lingual translation difficulties or theological interpretation differences, they may contain nuance variations from the original texts.<br><br>
+            <strong>Not a Religious Authority:</strong> VERITAS and Viorek Labs are completely independent and secular technology initiatives; they are not affiliated with any religious institution, foundation, sect, or congregation. The application cannot be used as an authority for "fatwa" or "absolute religious ruling".<br><br>
+            <strong>Calculation Tolerances:</strong> In location-based time calculations or the Qibla compass; the developer party cannot be held responsible for errors that may arise from your device's hardware calibration, magnetic field deviations, or GPS signal weakness.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">03</span> Academic Scope and Content Usage</h2>
+            <p>All texts presented within the application aim for theological research, academic comparison, and historical information, rather than merely providing religious practice. By downloading and using the application, the user acknowledges examining these texts as academic data sources.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">04</span> Advertising Policy and Analytics Data</h2>
+            <p>To ensure the sustainability of our free version, advertisements are shown within the application via the Google AdMob infrastructure. Viorek Labs maintains the highest level of ad filtering in accordance with the application's concept and sensitivity:</p>
+            <ul>
+                <li>In the advertisements shown; all categories containing <strong>alcohol, gambling, adult content (sexuality, etc.), and elements of crime/violence</strong> are manually blocked.</li>
+                <li>To measure application performance and detect potential crashes, anonymized usage statistics may be collected via Firebase Analytics. This data cannot be linked to your identity.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">05</span> Offline Operation and Intellectual Property</h2>
+            <p>VERITAS is designed with a software architecture that performs its core functions (reading texts, searching, calculating times based on saved location) without requiring an internet connection.</p>
+            <p>All intellectual property rights of the application's interface design, "VERITAS" brand, logos, and software codes belong to Viorek Labs. Source codes cannot be copied, reverse-engineered, or reproduced for commercial purposes without the written permission of the developer.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-number">06</span> Children's Privacy and GDPR Rights</h2>
+            <p>Although the VERITAS application appeals to a general audience due to its content, it does not knowingly request or collect any data from children under the age of 13. Under GDPR and KVKK, users have the following rights:</p>
+            <ul>
+                <li><strong>Right to Data Deletion:</strong> The moment you uninstall the application from your device, all your settings and local data are completely deleted from your device.</li>
+                <li><strong>Access and Objection:</strong> Since no profile or data belonging to you is kept on our servers, it is not possible to profile you or operate automated decision-making mechanisms.</li>
+            </ul>
+        </div>
+
+        <div class="contact-box">
+            <h3>Contact Us</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">If you have any questions, feedback, or data management requests regarding these terms of use, disclaimer, or privacy policy, you can contact us:</p>
+            <div class="contact-links">
+                <a href="mailto:admin@vioreklabs.com" class="contact-link">📧 admin@vioreklabs.com</a>
+                <a href="https://vioreklabs.com" class="contact-link">🌐 vioreklabs.com</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 Viorek Labs — Unlimited Technology. All rights reserved. / Tüm hakları saklıdır.</p>
+    </div>
+</div>
+
+<script>
+    function setLang(lang, btn) {
+        // Butonların aktiflik durumunu değiştir
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // İçerik panellerini değiştir
+        document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+        document.getElementById('content-' + lang).classList.add('active');
+        document.getElementById('title-' + lang).classList.add('active');
+        
+        // Sayfa dili etiketini güncelle
+        document.documentElement.lang = lang === 'tr' ? 'tr' : 'en';
+    }
+</script>
+
+</body>
+</html>
