@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hesap Silme Talebi — Viorek Labs</title>
+<meta name="description" content="Viorek Labs hesap ve kişisel veri silme talebi sayfası.">
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --void: #07070B;
+    --surface: #12121A;
+    --surface-2: #1A1A24;
+    --line: rgba(38, 38, 47, 0.6);
+    --silver: #ECEDF1;
+    --muted: #71717F;
+    --red: #E8242C;
+    --red-deep: #5A0F14;
+    --red-glow: rgba(232, 36, 44, 0.35);
+    --radius-lg: 20px;
+    --radius-md: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: #07070B;
+    background: var(--void);
+    color: var(--silver);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 850px; margin: 0 auto; padding: 0 24px; }
+  .nav-wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--muted);
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(7, 7, 11, 0.65);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .nav-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+  }
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+  }
+  .logo-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--red);
+    animation: blink 1.5s infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  
+  .nav-right { display: flex; align-items: center; gap: 32px; }
+  
+  .lang-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    color: var(--silver);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .lang-btn:hover { border-color: var(--red); box-shadow: 0 0 10px var(--red-glow); background: rgba(232, 36, 44, 0.05); }
+
+  /* ---------- HEADER / HERO ---------- */
+  .policy-header {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: 60px;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.15;
+    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    z-index: 0;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .policy-header h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    margin-bottom: 15px;
+    text-shadow: 0 0 30px rgba(255,255,255,0.1);
+  }
+  .policy-header h1 .accent { color: var(--red); }
+
+  /* ---------- CONTENT ---------- */
+  .policy-content {
+    padding: 60px 0 100px 0;
+    position: relative;
+  }
+  
+  .content-box {
+    background: linear-gradient(135deg, rgba(18, 18, 26, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 50px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(232, 36, 44, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  @media (max-width: 768px) {
+    .content-box { padding: 30px; }
+  }
+
+  .policy-section {
+    margin-bottom: 40px;
+  }
+  .policy-section:last-child {
+    margin-bottom: 0;
+  }
+  .policy-section h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .policy-section p {
+    color: var(--muted);
+    margin-bottom: 15px;
+  }
+  
+  /* Özel Uyarı ve E-Posta Alanı */
+  .alert-box {
+    background: rgba(232, 36, 44, 0.05);
+    border: 1px solid rgba(232, 36, 44, 0.3);
+    border-left: 4px solid var(--red);
+    padding: 20px;
+    border-radius: var(--radius-md);
+    margin: 25px 0;
+  }
+  
+  .alert-box p {
+    color: var(--silver);
+    margin: 0;
+  }
+
+  .instructions-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 25px;
+    margin-bottom: 30px;
+  }
+
+  .instructions-box ul {
+    list-style-type: none;
+    color: var(--muted);
+    margin-top: 15px;
+  }
+
+  .instructions-box ul li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 12px;
+  }
+
+  .instructions-box ul li:last-child {
+    margin-bottom: 0;
+  }
+
+  .instructions-box ul li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+  }
+
+  .email-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--red);
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: var(--radius-md);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 0 20px var(--red-glow);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+  }
+
+  .email-button:hover {
+    background: var(--red-deep);
+    border-color: var(--red);
+    box-shadow: 0 0 30px var(--red-glow);
+    color: #fff;
+  }
+
+  .contact-email {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--line);
+    color: var(--silver);
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  footer { padding: 60px 0; border-top: 1px solid var(--line); text-align: center; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <a href="index.html" class="logo-mark">
+      <div class="logo-dot"></div>
+      VIOREK LABS
+    </a>
+    <div class="nav-right">
+      <a href="index.html" class="lang-target" data-tr="Ana Sayfaya Dön" data-en="Back to Home" style="font-size: 13px; color: var(--muted); transition: 0.3s;" onmouseover="this.style.color='var(--silver)'" onmouseout="this.style.color='var(--muted)'">Ana Sayfaya Dön</a>
+      <button class="lang-btn" onclick="toggleLanguage()" aria-label="Switch language to English">EN</button>
+    </div>
+  </div>
+</nav>
+
+<header class="policy-header">
+  <div class="hero-grid"></div>
+  <div class="wrap header-content">
+    <span class="mono lang-target" data-tr="Hesap Yönetimi" data-en="Account Management">Hesap Yönetimi</span>
+    <h1 class="lang-target" data-tr="HESAP SİLME <span class='accent'>TALEBİ</span>" data-en="ACCOUNT DELETION <span class='accent'>REQUEST</span>">HESAP SİLME <span class="accent">TALEBİ</span></h1>
+    <p class="lang-target" data-tr="Kişisel verileriniz üzerinde tam kontrole sahipsiniz." data-en="You have full control over your personal data." style="color: var(--muted);">Kişisel verileriniz üzerinde tam kontrole sahipsiniz.</p>
+  </div>
+</header>
+
+<main class="policy-content">
+  <div class="wrap">
+    <div class="content-box">
+      
+      <div class="policy-section">
+        <h2 class="lang-target" data-tr="Bilgilendirme" data-en="Information">Bilgilendirme</h2>
+        <p class="lang-target" 
+           data-tr="Viorek Labs uygulamalarındaki hesabınızı ve size ait tüm kişisel verilerinizi dilediğiniz zaman kalıcı olarak silme hakkına sahipsiniz. Gizlilik ve güvenlik ilkelerimiz gereği, talebiniz ulaştıktan sonra 7 iş günü içerisinde verileriniz sistemlerimizden tamamen temizlenmektedir." 
+           data-en="You have the right to permanently delete your account and all your personal data in Viorek Labs applications at any time. In accordance with our privacy and security principles, your data will be completely cleared from our systems within 7 business days after your request is received.">
+           Viorek Labs uygulamalarındaki hesabınızı ve size ait tüm kişisel verilerinizi dilediğiniz zaman kalıcı olarak silme hakkına sahipsiniz. Gizlilik ve güvenlik ilkelerimiz gereği, talebiniz ulaştıktan sonra 7 iş günü içerisinde verileriniz sistemlerimizden tamamen temizlenmektedir.
+        </p>
+      </div>
+
+      <div class="alert-box">
+        <p class="lang-target" 
+           data-tr="<strong>Önemli Uyarı:</strong> Hesap silme işlemi geri alınamaz. Silme işlemi tamamlandıktan sonra, hesabınıza bağlı tüm sağlık, takip ve kişisel verileriniz kalıcı olarak yok edilir ve bu verilere hiçbir koşulda tekrar erişim sağlanamaz." 
+           data-en="<strong>Important Warning:</strong> Account deletion is irreversible. Once the deletion process is complete, all health, tracking, and personal data linked to your account will be permanently destroyed, and this data cannot be accessed again under any circumstances.">
+           <strong>Önemli Uyarı:</strong> Hesap silme işlemi geri alınamaz. Silme işlemi tamamlandıktan sonra, hesabınıza bağlı tüm sağlık, takip ve kişisel verileriniz kalıcı olarak yok edilir ve bu verilere hiçbir koşulda tekrar erişim sağlanamaz.
+        </p>
+      </div>
+
+      <div class="instructions-box">
+        <h3 class="lang-target" data-tr="Nasıl Talep Oluşturabilirim?" data-en="How Can I Make a Request?" style="font-size: 16px; margin-bottom: 10px;">Nasıl Talep Oluşturabilirim?</h3>
+        <p class="lang-target" 
+           data-tr="Güvenlik nedeniyle hesap silme işlemlerini doğrulanmış iletişim kanalları üzerinden gerçekleştiriyoruz. Talebinizi oluşturmak için aşağıdaki formata uygun bir e-posta göndermeniz gerekmektedir:" 
+           data-en="For security reasons, we process account deletion requests through verified communication channels. To create your request, you need to send an email in the following format:">
+           Güvenlik nedeniyle hesap silme işlemlerini doğrulanmış iletişim kanalları üzerinden gerçekleştiriyoruz. Talebinizi oluşturmak için aşağıdaki formata uygun bir e-posta göndermeniz gerekmektedir:
+        </p>
+        <ul>
+          <li>
+            <strong class="lang-target" data-tr="Alıcı:" data-en="Recipient:">Alıcı:</strong> <span class="contact-email">admin@vioreklabs.com</span>
+          </li>
+          <li>
+            <strong class="lang-target" data-tr="Konu Başlığı:" data-en="Subject Line:">Konu Başlığı:</strong> 
+            <span class="lang-target" data-tr="Hesap Silme Talebi" data-en="Account Deletion Request">Hesap Silme Talebi</span>
+          </li>
+          <li>
+            <strong class="lang-target" data-tr="İçerik:" data-en="Content:">İçerik:</strong> 
+            <span class="lang-target" data-tr="Uygulamada kayıtlı olduğunuz e-posta adresinizi belirterek tüm verilerinizin silinmesini talep ettiğinizi yazınız." data-en="State your registered email address in the application and write that you request all your data to be deleted.">Uygulamada kayıtlı olduğunuz e-posta adresinizi belirterek tüm verilerinizin silinmesini talep ettiğinizi yazınız.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- E-posta Gönderme Butonu -->
+      <a href="mailto:admin@vioreklabs.com?subject=Hesap%20Silme%20Talebi&body=Merhaba%2C%0A%0AViorek%20Labs%20uygulamalar%C4%B1ndaki%20hesab%C4%B1m%C4%B1n%20ve%20bana%20ait%20t%C3%BCm%20ki%C5%9Fisel%20verilerimin%20kal%C4%B1c%C4%B1%20olarak%20silinmesini%20talep%20ediyorum.%0A%0AUygulamaya%20Kay%C4%B1tl%C4%B1%20E-posta%20Adresim%3A%20%5BBilgiyi%20Buraya%20Yaz%C4%B1n%5D%0A%0ATe%C5%9Fekk%C3%BCrler." class="email-button lang-target" data-tr="Otomatik Talep E-Postası Oluştur" data-en="Create Automated Request Email">
+        Otomatik Talep E-Postası Oluştur
+      </a>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="mono" style="font-size: 10px;">© 2026 VIOREK LABS — UNLIMITED TECHNOLOGY</p>
+  </div>
+</footer>
+
+<script>
+  let currentLang = 'TR';
+  function toggleLanguage() {
+    currentLang = currentLang === 'TR' ? 'EN' : 'TR';
+    document.documentElement.lang = currentLang === 'TR' ? 'tr' : 'en';
+
+    // Buton metnini ve etiketini güncelle
+    const langBtn = document.querySelector('.lang-btn');
+    langBtn.innerText = currentLang === 'TR' ? 'EN' : 'TR';
+    langBtn.setAttribute('aria-label', currentLang === 'TR' ? 'Switch language to English' : 'Dili Türkçeye çevir');
+
+    // Tüm lang-target sınıflı elementleri güncelle
+    const targets = document.querySelectorAll('.lang-target');
+    targets.forEach(el => {
+      const translation = currentLang === 'TR' ? el.getAttribute('data-tr') : el.getAttribute('data-en');
+      if(translation) {
+        el.innerHTML = translation;
+      }
+    });
+    
+    // E-posta Butonu URL güncelleme (TR ve EN için mailto body'si)
+    const emailBtn = document.querySelector('.email-button');
+    if (currentLang === 'EN') {
+        emailBtn.href = "mailto:admin@vioreklabs.com?subject=Account%20Deletion%20Request&body=Hello%2C%0A%0AI%20request%20the%20permanent%20deletion%20of%20my%20account%20and%20all%20my%20personal%20data%20in%20Viorek%20Labs%20applications.%0A%0AMy%20Registered%20Email%20Address%3A%20%5BType%20Your%20Info%20Here%5D%0A%0AThank%20you.";
+    } else {
+        emailBtn.href = "mailto:admin@vioreklabs.com?subject=Hesap%20Silme%20Talebi&body=Merhaba%2C%0A%0AViorek%20Labs%20uygulamalar%C4%B1ndaki%20hesab%C4%B1m%C4%B1n%20ve%20bana%20ait%20t%C3%BCm%20ki%C5%9Fisel%20verilerimin%20kal%C4%B1c%C4%B1%20olarak%20silinmesini%20talep%20ediyorum.%0A%0AUygulamaya%20Kay%C4%B1tl%C4%B1%20E-posta%20Adresim%3A%20%5BBilgiyi%20Buraya%20Yaz%C4%B1n%5D%0A%0ATe%C5%9Fekk%C3%BCrler.";
+    }
+  }
+</script>
+</body>
+</html>
