@@ -21,9 +21,9 @@ a{color:inherit;text-decoration:none}
 
 /* dil geçişi */
 .tr{display:block}.ru{display:none}
-body.ru .tr{display:none}body.ru .ru{display:block}
+#ruToggle:checked ~ * .tr{display:none}#ruToggle:checked ~ * .ru{display:block}
 span.tr{display:inline}span.ru{display:none}
-body.ru span.tr{display:none}body.ru span.ru{display:inline}
+#ruToggle:checked ~ * span.tr{display:none}#ruToggle:checked ~ * span.ru{display:inline}.lbl-tr{display:none}#ruToggle:checked ~ nav .lbl-ru{display:none}#ruToggle:checked ~ nav .lbl-tr{display:inline}
 
 /* nav */
 nav{position:sticky;top:0;z-index:10;background:rgba(5,8,11,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:var(--safe-top)}
@@ -98,6 +98,7 @@ footer{border-top:1px solid var(--line);padding:34px 0 calc(34px + var(--safe-bo
 </style>
 </head>
 <body>
+<input type="checkbox" id="ruToggle" hidden>
 
 <nav>
   <div class="wrap nav">
@@ -106,7 +107,7 @@ footer{border-top:1px solid var(--line);padding:34px 0 calc(34px + var(--safe-bo
       VOLYRA
     </a>
     <div class="nav-right">
-      <button class="lang" id="langBtn" onclick="toggleLang()">RU</button>
+      <label for="ruToggle" class="lang" id="langBtn" style="display:inline-block;cursor:pointer;user-select:none"><span class="lbl-ru">RU</span><span class="lbl-tr">TR</span></label>
       <a class="btn-sm" href="https://play.google.com/store/apps/details?id=com.alfa.rusca" target="_blank" rel="noopener">
         <span class="tr">İndir</span><span class="ru">Скачать</span>
       </a>
@@ -235,13 +236,5 @@ footer{border-top:1px solid var(--line);padding:34px 0 calc(34px + var(--safe-bo
   </div>
 </footer>
 
-<script>
-function toggleLang(){
-  const ru = document.body.classList.toggle('ru');
-  document.documentElement.lang = ru ? 'ru' : 'tr';
-  document.title = ru ? 'Volyra: Русский для YDS и YÖKDİL' : 'Volyra: Rusça YDS YÖKDİL | Русский для YDS';
-  document.getElementById('langBtn').textContent = ru ? 'TR' : 'RU';
-}
-</script>
 </body>
 </html>
